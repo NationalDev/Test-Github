@@ -75,6 +75,8 @@ eval(getMasterScriptText("INCLUDES_ACCELA_GLOBALS"));
 eval(getMasterScriptText("INCLUDES_CUSTOM"));
 eval(getScriptText("INCLUDES_BATCH"));
 
+
+
 /*------------------------------------------------------------------------------------------------------/
 |
 | END: USER CONFIGURABLE PARAMETERS
