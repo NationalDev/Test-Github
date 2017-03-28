@@ -5,6 +5,9 @@
 //AIUA:Planning/Project Reviews/Project Management Record/NA
 //Testing completed 05/05/2016 -GS
 
+
+
+
 showDebug = true;
 var feeCode = "PMT_BLD";
 var feeSchedule = "PLNPMR";
