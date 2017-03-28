@@ -331,7 +331,7 @@ function mainProcess() {
         setDescription = setProcessPrefix + " : " + startDate.toLocaleString();
 
         //Create Process Set
-        vProcessSet = new setSet(setId, setName, null, setDescription);
+        vProcessSet = new capSet(setId, setName, null, setDescription);
         vProcessSet.name = setName;
         vProcessSet.comment = setDescription;
     }
@@ -401,7 +401,7 @@ function mainProcess() {
         setDescription = setBillingContactPrefix + " : " + startDate.toLocaleString();
 
         // Create Billing Contact Set of Sets
-        vBillingContactSet = new setSet(setId, setName, null, setDescription);
+        vBillingContactSet = new capSet(setId, setName, null, setDescription);
         vBillingContactSet.name = setName;
         vBillingContactSet.comment = setDescription;
 
