@@ -31,16 +31,16 @@ aa.env.setValue("appCategory", "License");
 aa.env.setValue("expirationStatus", "About to Expire");
 aa.env.setValue("newExpirationStatus", "Expired");
 aa.env.setValue("newApplicationStatus", "Expired");
-aa.env.setValue("setProcessPrefix", "90D_A");
-aa.env.setValue("setRecordsPrefix", "90D_B");
-aa.env.setValue("setEmailPrefix", "90D_C");
-aa.env.setValue("setNonEmailPrefix", "90D_D");
-aa.env.setValue("setBillingContactPrefix", "90D_E");
+aa.env.setValue("setProcessPrefix", "EXP_A");
+aa.env.setValue("setRecordsPrefix", "EXP_B");
+aa.env.setValue("setEmailPrefix", "EXP_C");
+aa.env.setValue("setNonEmailPrefix", "EXP_D");
+aa.env.setValue("setBillingContactPrefix", "EXP_E");
 aa.env.setValue("emailAddress", "sallami@detroitmi.gov");
 aa.env.setValue("showDebug", "true");
-aa.env.setValue("sendEmailToContactTypes", "Applicant");
-aa.env.setValue("emailTemplate", "LICENSE ABOUT TO EXPIRE 90 DAYS");
-aa.env.setValue("BatchJobName", "LicenseBatch");
+aa.env.setValue("sendEmailToContactTypes", "Billing Contact");
+aa.env.setValue("emailTemplate", "LICENSE EXPIRED");
+aa.env.setValue("BatchJobName", "EXPIREDBatch");
 aa.env.setValue("createRenewalRecord","Y");
 aa.env.setValue("vASICheck",null);
 aa.env.setValue("vASIValue",null);
@@ -117,42 +117,42 @@ else {
 | Start: BATCH PARAMETERS
 |
 /------------------------------------------------------------------------------------------------------*/
-var skipAppStatus = "Closed,Confirmed Closed,Denied,Enforcement,Out of County MU,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld" //20151120
-var fromDate = getParam("fromDate");							// Hardcoded dates.   Use for testing only
-var toDate = getParam("toDate");								// ""
-var dFromDate = aa.date.parseDate(fromDate);					//
-var dToDate = aa.date.parseDate(toDate);						//
-var lookAheadDays = aa.env.getValue("30");			// Number of days from today  ("lookAheadDays")
-var daySpan = aa.env.getValue("6");						// Days to search (6 if run weekly, 0 if daily, etc.)
-var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
-var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
-var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
-var appCategory = getParam("appCategory");						//   app category to process {NA}
-var expStatus = getParam("expirationStatus");					//   test for this expiration status
-var newExpStatus = getParam("newExpirationStatus");				//   update to this expiration status
-var newAppStatus = getParam("newApplicationStatus");				//   update the CAP to this status
-var vASICheck = getParam("vASICheck");
-var vASIValue = getParam("vASIValue");
-var vASIExCheck = getParam("vASIExCheck");
-var vASIExValue = getParam("vASIExValue");
-var setProcessPrefix = getParam("setProcessPrefix");
-var setRecordsPrefix = getParam("setRecordsPrefix");
-var setEmailPrefix = getParam("setEmailPrefix");
-var setNonEmailPrefix = getParam("setNonEmailPrefix");
-var setBillingContactPrefix = getParam("setBillingContactPrefix");
-var skipAppStatusArray = skipAppStatus.split(","); //getParam("skipAppStatus").split(",");	//   Skip records with one of these application statuses
-var emailAddress = getParam("emailAddress");					// email to send report
-var sendEmailToContactTypes = getParam("sendEmailToContactTypes");// send out emails?
-var emailTemplate = getParam("emailTemplate");					// email Template. E.g., LICENSE ABOUT TO EXPIRE 90 DAYS
-var createRenewalRecord = getParam("createRenewalRecord");	// create a temporary record
-var currentUserID = "ADMIN"; // Current User
-var disableTokens = false;		// turn off tokenizing of std choices (enables use of "{} and []")
-var useAppSpecificGroupName = false;	// Use Group name when populating App Specific Info Values
-var useTaskSpecificGroupName = false;	// Use Group name when populating Task Specific Info Values
-var enableVariableBranching = true;	// Allows use of variable names in branching.  Branches are not followed in Doc Only
-var maxEntries = 99;			// Maximum number of std choice entries.  Entries must be Left Zero Padded
-var publicUser = false;
-var vRunReport = getParam("vRunReport");
+//var skipAppStatus = "Closed,Confirmed Closed,Denied,Enforcement,Out of County MU,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld" //20151120
+//var fromDate = getParam("fromDate");							// Hardcoded dates.   Use for testing only
+//var toDate = getParam("toDate");								// ""
+//var dFromDate = aa.date.parseDate(fromDate);					//
+//var dToDate = aa.date.parseDate(toDate);						//
+//var lookAheadDays = aa.env.getValue("30");			// Number of days from today  ("lookAheadDays")
+//var daySpan = aa.env.getValue("6");						// Days to search (6 if run weekly, 0 if daily, etc.)
+//var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
+//var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
+//var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
+//var appCategory = getParam("appCategory");						//   app category to process {NA}
+//var expStatus = getParam("expirationStatus");					//   test for this expiration status
+//var newExpStatus = getParam("newExpirationStatus");				//   update to this expiration status
+//var newAppStatus = getParam("newApplicationStatus");				//   update the CAP to this status
+//var vASICheck = getParam("vASICheck");
+//var vASIValue = getParam("vASIValue");
+//var vASIExCheck = getParam("vASIExCheck");
+//var vASIExValue = getParam("vASIExValue");
+//var setProcessPrefix = getParam("setProcessPrefix");
+//var setRecordsPrefix = getParam("setRecordsPrefix");
+//var setEmailPrefix = getParam("setEmailPrefix");
+//var setNonEmailPrefix = getParam("setNonEmailPrefix");
+//var setBillingContactPrefix = getParam("setBillingContactPrefix");
+//var skipAppStatusArray = skipAppStatus.split(","); //getParam("skipAppStatus").split(",");	//   Skip records with one of these application statuses
+//var emailAddress = getParam("emailAddress");					// email to send report
+//var sendEmailToContactTypes = getParam("sendEmailToContactTypes");// send out emails?
+//var emailTemplate = getParam("emailTemplate");					// email Template. E.g., LICENSE ABOUT TO EXPIRE 90 DAYS
+//var createRenewalRecord = getParam("createRenewalRecord");	// create a temporary record
+//var currentUserID = "ADMIN"; // Current User
+//var disableTokens = false;		// turn off tokenizing of std choices (enables use of "{} and []")
+//var useAppSpecificGroupName = false;	// Use Group name when populating App Specific Info Values
+//var useTaskSpecificGroupName = false;	// Use Group name when populating Task Specific Info Values
+//var enableVariableBranching = true;	// Allows use of variable names in branching.  Branches are not followed in Doc Only
+//var maxEntries = 99;			// Maximum number of std choice entries.  Entries must be Left Zero Padded
+//var publicUser = false;
+//var vRunReport = getParam("vRunReport");
 
 /*----------------------------------------------------------------------------------------------------/
 |
@@ -432,8 +432,7 @@ function mainProcess() {
         b1Exp = myExp[thisExp];
         expDate = b1Exp.getExpDate();
         
-        logDebug("expDate = " + expDate);
-        
+        logDebug("expDate " + expDate);
         
         if (expDate) {
             b1ExpDate = expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear();
