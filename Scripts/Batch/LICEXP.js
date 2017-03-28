@@ -326,7 +326,7 @@ function mainProcess() {
     //Create a set of sets processed via this batch
     if (setProcessPrefix != "") {
         //setId = setProcessPrefix.substr(0, 5) + yy; // + mm + dd + hh + mi;
-        setId = setProcessPrefix + yy; // + mm + dd + hh + mi;
+        setId = setProcessPrefix + yy + mm + dd + hh + mi;
         setName = setProcessPrefix + " Renewals Set of Sets";
         setDescription = setProcessPrefix + " : " + startDate.toLocaleString();
 
@@ -338,7 +338,7 @@ function mainProcess() {
 
     //Create a set of all records processed by this batch
     if (setRecordsPrefix != "") {
-        setId = setRecordsPrefix + yy; // + mm + dd + hh + mi;
+        setId = setRecordsPrefix + yy + mm + dd + hh + mi;
         //setId = setRecordsPrefix.substr(0, 5) + yy + mm + dd + hh + mi;
         setName = setRecordsPrefix + " Processed Set";
         setDescription = setRecordsPrefix + " : " + startDate.toLocaleString();
