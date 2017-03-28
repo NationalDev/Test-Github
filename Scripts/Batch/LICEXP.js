@@ -1,33 +1,34 @@
 /*------------------------------------------------------------------------------------------------------/
-| Program: Batch License Expiration_TRL.js  Trigger: Batch
+| Program: Batch LICEXP.js  Trigger: Batch
 | Client:
 |
 | Version 1.0 - Base Version. 11/01/08 JHS
 | Version 1.1 - Updated for Multco 09/10/14 ETW
 |               Modified 20151216 by NSS: added Enforcement as skip status; added Env print out
+| Version 2.0   Modified 20170328 by Iman Sallam	
 |
 /------------------------------------------------------------------------------------------------------*/
 
 // Testing values.  Replace with batch parameters when testing is complete
 aa.env.setValue("fromDate", "");
 aa.env.setValue("toDate", "");
-aa.env.setValue("appGroup", "TRL");
+aa.env.setValue("appGroup", "Licenses");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
 aa.env.setValue("appCategory", "License");
 aa.env.setValue("expirationStatus", "Active");
 aa.env.setValue("newExpirationStatus", "About to Expire");
 aa.env.setValue("newApplicationStatus", "About to Expire");
-aa.env.setValue("setProcessPrefix", "TRL_P_");
-aa.env.setValue("setRecordsPrefix", "TRL_R_");
-aa.env.setValue("setEmailPrefix", "TRL_E_");
-aa.env.setValue("setNonEmailPrefix", "TRL_NE_");
-aa.env.setValue("setBillingContactPrefix", "TRL_BC_");
-aa.env.setValue("emailAddress", "");
+aa.env.setValue("setProcessPrefix", "LIC_P_");
+aa.env.setValue("setRecordsPrefix", "LIC_R_");
+aa.env.setValue("setEmailPrefix", "LIC_E_");
+aa.env.setValue("setNonEmailPrefix", "LIC_NE_");
+aa.env.setValue("setBillingContactPrefix", "LIC_BC_");
+aa.env.setValue("emailAddress", "sallami@detroitmi.gov");
 aa.env.setValue("showDebug", "true");
 aa.env.setValue("sendEmailToContactTypes", "Billing Contact,Applicant");
 aa.env.setValue("emailTemplate", "LICENSE ABOUT TO EXPIRE 90 DAYS");
-aa.env.setValue("BatchJobName", "TestBatch");
+aa.env.setValue("BatchJobName", "ImanBatch");
 aa.env.setValue("createRenewalRecord", "Y");
 aa.env.setValue("vASICheck", null);
 aa.env.setValue("vASIValue", null);
@@ -105,12 +106,12 @@ else {
 |
 /------------------------------------------------------------------------------------------------------*/
 var skipAppStatus = "About to Expire,Expired,Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
-var fromDate = getParam("fromDate");							// Hardcoded dates.   Use for testing only
-var toDate = getParam("toDate");								// ""
+var fromDate = "01/01/2014";   //getParam("fromDate");							// Hardcoded dates.   Use for testing only
+var toDate = "01/01/2020";   //getParam("toDate");								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
-var lookAheadDays = aa.env.getValue("lookAheadDays");			// Number of days from today
-var daySpan = aa.env.getValue("daySpan");						// Days to search (6 if run weekly, 0 if daily, etc.)
+var lookAheadDays = aa.env.getValue("30");			// Number of days from today
+var daySpan = aa.env.getValue("0");						// Days to search (6 if run weekly, 0 if daily, etc.)
 var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
 var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
 var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
@@ -434,6 +435,9 @@ function mainProcess() {
 
         b1Exp = myExp[thisExp];
         expDate = b1Exp.getExpDate();
+        
+        logDebug("expDate =" + expDate);
+        
         if (expDate) {
             b1ExpDate = expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear();
         }
