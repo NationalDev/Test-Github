@@ -1,1 +1,0 @@
-if (CurrentUserID == "ADMIN") showDebug = true; showMessage=true;
