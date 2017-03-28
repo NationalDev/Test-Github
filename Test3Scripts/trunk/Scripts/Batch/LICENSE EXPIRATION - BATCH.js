@@ -1,3 +1,12 @@
+//*********************************************************************************************************/
+//	LICENSE EXPIRATION-BATCH.js																	       /
+//																			Iman Sallam @ City of Detroit  /
+//		Deploy with the script code and script title below (all caps)									   /
+//																								           /
+//																										   / 							
+//																										   /
+//*********************************************************************************************************/
+
 /*------------------------------------------------------------------------------------------------------/
 | Program: Batch Expiration.js  Trigger: Batch
 | Client:
@@ -6,6 +15,7 @@
 | Version 1.1 - Updated for Multco 09/10/14 ETW
 |               Modified 20151216 by NSS: added Enforcement as skip status; added Env print out
 |
+
 /------------------------------------------------------------------------------------------------------*/
 /*
 // Testing values.  Replace with batch parameters when testing is complete
