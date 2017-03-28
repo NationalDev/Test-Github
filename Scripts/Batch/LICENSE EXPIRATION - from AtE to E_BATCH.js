@@ -7,6 +7,7 @@
 //																										   /
 //*********************************************************************************************************/
 
+
 /*------------------------------------------------------------------------------------------------------/
 | Program: Batch Expiration.js  Trigger: Batch
 | Client:
@@ -17,6 +18,9 @@
 |
 /------------------------------------------------------------------------------------------------------*/
 /*
+ * 
+ * 
+ * 
 // Testing values.  Replace with batch parameters when testing is complete
 */aa.env.setValue("fromDate", "12/01/2014");
 aa.env.setValue("toDate", "12/31/2018");
@@ -24,9 +28,9 @@ aa.env.setValue("appGroup", "Licenses");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
 aa.env.setValue("appCategory", "License");
-aa.env.setValue("expirationStatus", "Active");
-aa.env.setValue("newExpirationStatus", "About to Expire");
-aa.env.setValue("newApplicationStatus", "About to Expire");
+aa.env.setValue("expirationStatus", "About to Expire");
+aa.env.setValue("newExpirationStatus", "Expired");
+aa.env.setValue("newApplicationStatus", "Expired");
 aa.env.setValue("setProcessPrefix", "90D_A");
 aa.env.setValue("setRecordsPrefix", "90D_B");
 aa.env.setValue("setEmailPrefix", "90D_C");
@@ -34,9 +38,9 @@ aa.env.setValue("setNonEmailPrefix", "90D_D");
 aa.env.setValue("setBillingContactPrefix", "90D_E");
 aa.env.setValue("emailAddress", "sallami@detroitmi.gov");
 aa.env.setValue("showDebug", "true");
-aa.env.setValue("sendEmailToContactTypes", "Billing Contact");
+aa.env.setValue("sendEmailToContactTypes", "Applicant");
 aa.env.setValue("emailTemplate", "LICENSE ABOUT TO EXPIRE 90 DAYS");
-aa.env.setValue("BatchJobName", "TestBatch");
+aa.env.setValue("BatchJobName", "LicenseBatch");
 aa.env.setValue("createRenewalRecord","Y");
 aa.env.setValue("vASICheck",null);
 aa.env.setValue("vASIValue",null);
@@ -83,6 +87,8 @@ eval(getMasterScriptText("INCLUDES_ACCELA_FUNCTIONS_ASB"));
 eval(getMasterScriptText("INCLUDES_ACCELA_GLOBALS"));
 eval(getMasterScriptText("INCLUDES_CUSTOM"));
 eval(getScriptText("INCLUDES_BATCH"));
+
+
 
 /*------------------------------------------------------------------------------------------------------/
 |
@@ -425,6 +431,10 @@ function mainProcess() {
 
         b1Exp = myExp[thisExp];
         expDate = b1Exp.getExpDate();
+        
+        logDebug("expDate = " + expdate);
+        
+        
         if (expDate) {
             b1ExpDate = expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear();
             
