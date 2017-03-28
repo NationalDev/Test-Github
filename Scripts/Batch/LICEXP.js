@@ -406,9 +406,9 @@ function mainProcess() {
         vBillingContactSet.comment = setDescription;
 
         //Add to processing set
-        if (setProcessPrefix != "") {
-            vProcessSet.add(setId);
-        }
+//        if (setProcessPrefix != "") {
+//            vProcessSet.add(setId);
+//        }
     }
 
     //Get all license records by their expiration date and expiration status
