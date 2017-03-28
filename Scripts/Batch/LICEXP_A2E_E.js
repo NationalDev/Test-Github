@@ -12,13 +12,13 @@
 // Testing values.  Replace with batch parameters when testing is complete
 aa.env.setValue("fromDate", "");
 aa.env.setValue("toDate", "");
-aa.env.setValue("appGroup", "Licenses");
+aa.env.setValue("appGroup", "");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
 aa.env.setValue("appCategory", "License");
-aa.env.setValue("expirationStatus", "Active");
-aa.env.setValue("newExpirationStatus", "About to Expire");
-aa.env.setValue("newApplicationStatus", "About to Expire");
+aa.env.setValue("expirationStatus", "About to Expire");
+aa.env.setValue("newExpirationStatus", "Expired");
+aa.env.setValue("newApplicationStatus", "Expired");
 aa.env.setValue("setProcessPrefix", "LIC_P_");
 aa.env.setValue("setRecordsPrefix", "LIC_R_");
 aa.env.setValue("setEmailPrefix", "LIC_E_");
@@ -27,7 +27,7 @@ aa.env.setValue("setBillingContactPrefix", "LIC_BC_");
 aa.env.setValue("emailAddress", "sallami@detroitmi.gov");
 aa.env.setValue("showDebug", "true");
 aa.env.setValue("sendEmailToContactTypes", "Billing Contact,Applicant");
-aa.env.setValue("emailTemplate", "LICENSE ABOUT TO EXPIRE 90 DAYS");
+aa.env.setValue("emailTemplate", "LICENSE EXPIRED");
 aa.env.setValue("BatchJobName", "ImanBatch");
 aa.env.setValue("createRenewalRecord", "Y");
 aa.env.setValue("vASICheck", null);
@@ -110,7 +110,7 @@ var fromDate = "01/01/2014";   //getParam("fromDate");							// Hardcoded dates.
 var toDate = "01/01/2020";   //getParam("toDate");								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
-var lookAheadDays = aa.env.getValue("30");			// Number of days from today
+var lookAheadDays = aa.env.getValue("0");			// Number of days from today
 var daySpan = aa.env.getValue("0");						// Days to search (6 if run weekly, 0 if daily, etc.)
 var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
 var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
@@ -148,7 +148,7 @@ var vRunReport = getParam("vRunReport");
 |
 /------------------------------------------------------------------------------------------------------*/
 var startDate = new Date();
-var timeExpired = false;
+var timeExpired = true;
 
 if (!fromDate.length) {// no "from" date, assume today + number of days to look ahead
     fromDate = dateAdd(null, parseInt(lookAheadDays));
@@ -415,6 +415,9 @@ function mainProcess() {
     expResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
     myExp;
 
+// if ()    
+    
+    
     if (expResult.getSuccess()) {
         myExp = expResult.getOutput();
         logDebug("Processing " + myExp.length + " expiration records");
