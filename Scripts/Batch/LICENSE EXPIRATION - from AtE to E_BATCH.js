@@ -432,7 +432,7 @@ function mainProcess() {
         b1Exp = myExp[thisExp];
         expDate = b1Exp.getExpDate();
         
-        logDebug("expDate = " + expdate);
+        logDebug("expDate = " + expDate);
         
         
         if (expDate) {
