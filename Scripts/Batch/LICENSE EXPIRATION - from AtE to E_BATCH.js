@@ -584,7 +584,7 @@ function mainProcess() {
         z = 0;
         for (z in conTypeArray) {
             logDebug("          Searching for " + conTypeArray[z]); //this shows up blank in debug output
-            vConObj = getContactObj(capId, conTypeArray[z]);
+            vConObj = getContactArray(capId);
             if (vConObj) {
                 logDebug("          Found: " + vConObj.people.getFullName() + " " + vConObj.refSeqNumber);
                 conEmail = vConObj.people.getEmail();
