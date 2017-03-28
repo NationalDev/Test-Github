@@ -344,7 +344,7 @@ function mainProcess() {
         setDescription = setRecordsPrefix + " : " + startDate.toLocaleString();
 
         //Create records Set
-        vRecordsSet = new capSet3_0(setId, setName, null, setDescription);
+        vRecordsSet = new capSet(setId, setName, null, setDescription);
         vRecordsSet.recSetType = "Billing";
         vRecordsSet.status = "Pending";
         vRecordsSet.update();
@@ -363,7 +363,7 @@ function mainProcess() {
         setDescription = setEmailPrefix + " : " + startDate.toLocaleString();
 
         //Create Email Set
-        vEmailSet = new capSet3_0(setId, setName, null, setDescription);
+        vEmailSet = new capSet(setId, setName, null, setDescription);
         vEmailSet.recSetType = "Billing";
         vEmailSet.status = "Pending";
         vEmailSet.update();
@@ -382,7 +382,7 @@ function mainProcess() {
         setDescription = setNonEmailPrefix + " : " + startDate.toLocaleString();
 
         //Create NonEmail Set
-        vNonEmailSet = new capSet3_0(setId, setName, null, setDescription);
+        vNonEmailSet = new capSet(setId, setName, null, setDescription);
         vNonEmailSet.recSetType = "Billing";
         vNonEmailSet.status = "Pending";
         vNonEmailSet.update();
@@ -618,7 +618,7 @@ function mainProcess() {
                     setDescription = vConObj.people.getFullName() + " : " + startDate.toLocaleString();
 
                     //Get or Create unique Billing Contact Set
-                    vContactSet = new capSet3_0(setId, setName, null, setDescription);
+                    vContactSet = new capSet(setId, setName, null, setDescription);
                     vContactSet.recSetType = "Billing";
                     vContactSet.status = "Pending";
                     vContactSet.update();
@@ -712,7 +712,7 @@ function mainProcess() {
         for (w in vBillingContactSet.members) {
             thisSet = vBillingContactSet.members[w];
             thisSetId = thisSet.getSetID()
-            vtmpCapSet = new capSet3_0(thisSetId);
+            vtmpCapSet = new capSet(thisSetId);
             if (vtmpCapSet.size <= 1) {
                 vBillingContactSet.remove(thisSetId);
                 aa.set.removeSetHeader(thisSetId);
