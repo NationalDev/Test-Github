@@ -105,7 +105,7 @@ else {
 | Start: BATCH PARAMETERS
 |
 /------------------------------------------------------------------------------------------------------*/
-var skipAppStatus = "About to Expire,Expired,Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
+var skipAppStatus = /*"About to Expire,Expired,*/"Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
 var fromDate = "01/01/2014";   //getParam("fromDate");							// Hardcoded dates.   Use for testing only
 var toDate = "01/01/2020";   //getParam("toDate");								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
