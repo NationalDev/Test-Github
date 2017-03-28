@@ -350,9 +350,9 @@ function mainProcess() {
         vRecordsSet.update();
 
         //Add to processing set
-        if (setProcessPrefix != "") {
-            vProcessSet.add(setId);
-        }
+//        if (setProcessPrefix != "") {
+//            vProcessSet.add(setId);
+//        }
     }
 
     //Create a set of records where an email was sent
@@ -369,9 +369,9 @@ function mainProcess() {
         vEmailSet.update();
 
         //Add to processing set
-        if (setProcessPrefix != "") {
-            vProcessSet.add(setId);
-        }
+//        if (setProcessPrefix != "") {
+//            vProcessSet.add(setId);
+//        }
     }
 
     //Create a set of records where an email was not sent
@@ -388,9 +388,9 @@ function mainProcess() {
         vNonEmailSet.update();
 
         //Add to processing set
-        if (setProcessPrefix != "") {
-            vProcessSet.add(setId);
-        }
+//        if (setProcessPrefix != "") {
+//            vProcessSet.add(setId);
+//        }
     }
 
     //Create a set of sets of all Billing Contact sets
