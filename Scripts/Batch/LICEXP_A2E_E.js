@@ -422,6 +422,8 @@ function mainProcess() {
     expResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
     myExp;
 
+    logDebug("expResult =" + expResult);
+    
 // if ()    
     
     logDebug("b1Exp.getExpDate() =" + b1Exp.getExpDate());
