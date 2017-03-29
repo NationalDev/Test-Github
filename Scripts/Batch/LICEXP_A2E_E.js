@@ -162,6 +162,7 @@ acaSite = acaSite.substr(0, acaSite.toUpperCase().indexOf("/ADMIN"));
 
 logDebug("Date Range -- fromDate: " + fromDate + ", toDate: " + toDate);
 logDebug("expStatus to process " + expStatus);
+
 var startTime = startDate.getTime();			// Start timer
 var systemUserObj = aa.person.getUser("ADMIN").getOutput();
 
@@ -302,6 +303,7 @@ function mainProcess() {
     var addrState = "";
     var addrZip = "";
     var addrFull = "";
+    
     logDebug("skipAppStatus " + skipAppStatus);
 
     //yy = startDate.getFullYear().toString().substr(2, 2);
@@ -352,6 +354,8 @@ function mainProcess() {
         vRecordsSet.status = "Pending";
         vRecordsSet.update();
 
+        
+        
         //Add to processing set
         if (setProcessPrefix != "") {
             vProcessSet.add(setId);
@@ -419,6 +423,8 @@ function mainProcess() {
     myExp;
 
 // if ()    
+    
+    logDebug("b1Exp.getExpDate() =" + b1Exp.getExpDate());
     
     
     if (expResult.getSuccess()) {
