@@ -304,7 +304,8 @@ function mainProcess() {
     var addrZip = "";
     var addrFull = "";
     var capStatus = null;
-    capStatus = cap.getCapStatus();
+    
+    capStatus = cap.getStatus();
     
     logDebug("skipAppStatus " + skipAppStatus);
 
