@@ -50,7 +50,7 @@ var maxSeconds = 5 * 60;		// number of seconds allowed for batch processing, usu
 var message = "";
 var br = "<br>";
 var showDebug = true;
-var showMessage = false;
+var showMessage = true;
 
 var appTypeArray;
 var capId;
@@ -105,14 +105,14 @@ else {
 | Start: BATCH PARAMETERS
 |
 /------------------------------------------------------------------------------------------------------*/
-var skipAppStatus = /*"About to Expire,Expired,*/"Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
+var skipAppStatus = /*"About to Expire,Expired,*/"Active,Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
 var fromDate = "01/01/2014";   //getParam("fromDate");							// Hardcoded dates.   Use for testing only
 var toDate = "01/01/2020";   //getParam("toDate");								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
 var lookAheadDays = aa.env.getValue("0");			// Number of days from today
 var daySpan = aa.env.getValue("0");						// Days to search (6 if run weekly, 0 if daily, etc.)
-var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
+var appGroup = "license"; //getParam("appGroup");							//   app Group to process {Licenses}
 var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
 var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
 var appCategory = getParam("appCategory");						//   app category to process {NA}
@@ -372,9 +372,9 @@ function mainProcess() {
         vEmailSet.update();
 
         //Add to processing set
-//        if (setProcessPrefix != "") {
-//            vProcessSet.add(setId);
-//        }
+        if (setProcessPrefix != "") {
+            vProcessSet.add(setId);
+        }
     }
 
     //Create a set of records where an email was not sent
@@ -391,9 +391,9 @@ function mainProcess() {
         vNonEmailSet.update();
 
         //Add to processing set
-//        if (setProcessPrefix != "") {
-//            vProcessSet.add(setId);
-//        }
+        if (setProcessPrefix != "") {
+            vProcessSet.add(setId);
+        }
     }
 
     //Create a set of sets of all Billing Contact sets
@@ -409,9 +409,9 @@ function mainProcess() {
         vBillingContactSet.comment = setDescription;
 
         //Add to processing set
-//        if (setProcessPrefix != "") {
-//            vProcessSet.add(setId);
-//        }
+        if (setProcessPrefix != "") {
+            vProcessSet.add(setId);
+        }
     }
 
     //Get all license records by their expiration date and expiration status
