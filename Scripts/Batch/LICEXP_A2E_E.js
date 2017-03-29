@@ -381,24 +381,7 @@ function mainProcess() {
         }
     }
 
-    //Create a set of records where an email was not sent
-    if (setNonEmailPrefix != "") {
-        //setId = setNonEmailPrefix.substr(0, 5) + yy + mm + dd + hh + mi;
-        setId = setNonEmailPrefix + yy; // + mm + dd + hh + mi;
-        setName = setNonEmailPrefix + " Non-Email Set";
-        setDescription = setNonEmailPrefix + " : " + startDate.toLocaleString();
-
-        //Create NonEmail Set
-        vNonEmailSet = new capSet(setId, setName, null, setDescription);
-        vNonEmailSet.recSetType = "Billing";
-        vNonEmailSet.status = "Pending";
-        vNonEmailSet.update();
-
-        //Add to processing set
-        if (setProcessPrefix != "") {
-            vProcessSet.add(setId);
-        }
-    }
+000000000000
 
     //Create a set of sets of all Billing Contact sets
     if (setBillingContactPrefix != "") {
@@ -451,6 +434,7 @@ function mainProcess() {
         expDate = b1Exp.getExpDate();
         
         logDebug("expDate =" + expDate);
+        logDebug("b1Exp.getExpDate() =" + b1Exp.getExpDate());
         
         if (expDate) {
             b1ExpDate = expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear();
