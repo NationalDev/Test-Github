@@ -28,7 +28,7 @@ aa.env.setValue("emailAddress", "sallami@detroitmi.gov");
 aa.env.setValue("showDebug", "true");
 aa.env.setValue("sendEmailToContactTypes", "Billing Contact,Applicant");
 aa.env.setValue("emailTemplate", "LICENSE EXPIRED");
-aa.env.setValue("BatchJobName", "ImanBatch");
+aa.env.setValue("BatchJobName", "ExpiredBatch");
 aa.env.setValue("createRenewalRecord", "Y");
 aa.env.setValue("vASICheck", null);
 aa.env.setValue("vASIValue", null);
@@ -332,6 +332,9 @@ function mainProcess() {
 
         //Create Process Set
         vProcessSet = new capSet(setId, setName, null, setDescription);
+        
+        logDebug("vProcessSet =" + vProcessSet);
+        
         vProcessSet.name = setName;
         vProcessSet.comment = setDescription;
     }
