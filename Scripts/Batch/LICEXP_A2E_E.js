@@ -12,18 +12,18 @@
 // Testing values.  Replace with batch parameters when testing is complete
 aa.env.setValue("fromDate", "");
 aa.env.setValue("toDate", "");
-aa.env.setValue("appGroup", "");
+aa.env.setValue("appGroup", "*");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
-aa.env.setValue("appCategory", "License");
+aa.env.setValue("appCategory", "*");
 aa.env.setValue("expirationStatus", "About to Expire");
 aa.env.setValue("newExpirationStatus", "Expired");
 aa.env.setValue("newApplicationStatus", "Expired");
-aa.env.setValue("setProcessPrefix", "LIC_P_");
-aa.env.setValue("setRecordsPrefix", "LIC_R_");
-aa.env.setValue("setEmailPrefix", "LIC_E_");
-aa.env.setValue("setNonEmailPrefix", "LIC_NE_");
-aa.env.setValue("setBillingContactPrefix", "LIC_BC_");
+aa.env.setValue("setProcessPrefix", "EXP_P_");
+aa.env.setValue("setRecordsPrefix", "EXP_R_");
+aa.env.setValue("setEmailPrefix", "EXP_E_");
+aa.env.setValue("setNonEmailPrefix", "EXP_NE_");
+aa.env.setValue("setBillingContactPrefix", "EXP_BC_");
 aa.env.setValue("emailAddress", "sallami@detroitmi.gov");
 aa.env.setValue("showDebug", "true");
 aa.env.setValue("sendEmailToContactTypes", "Billing Contact,Applicant");
@@ -350,9 +350,9 @@ function mainProcess() {
         vRecordsSet.update();
 
         //Add to processing set
-//        if (setProcessPrefix != "") {
-//            vProcessSet.add(setId);
-//        }
+        if (setProcessPrefix != "") {
+            vProcessSet.add(setId);
+        }
     }
 
     //Create a set of records where an email was sent
