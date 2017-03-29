@@ -12,22 +12,22 @@
 // Testing values.  Replace with batch parameters when testing is complete
 aa.env.setValue("fromDate", "");
 aa.env.setValue("toDate", "");
-aa.env.setValue("appGroup", "Licenses");
+aa.env.setValue("appGroup", "*");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
-aa.env.setValue("appCategory", "License");
+aa.env.setValue("appCategory", "*");
 aa.env.setValue("expirationStatus", "Active");
 aa.env.setValue("newExpirationStatus", "About to Expire");
 aa.env.setValue("newApplicationStatus", "About to Expire");
-aa.env.setValue("setProcessPrefix", "LIC_P_");
-aa.env.setValue("setRecordsPrefix", "LIC_R_");
-aa.env.setValue("setEmailPrefix", "LIC_E_");
-aa.env.setValue("setNonEmailPrefix", "LIC_NE_");
-aa.env.setValue("setBillingContactPrefix", "LIC_BC_");
+aa.env.setValue("setProcessPrefix", "A2E_P_");
+aa.env.setValue("setRecordsPrefix", "A2E_R_");
+aa.env.setValue("setEmailPrefix", "A2E_E_");
+aa.env.setValue("setNonEmailPrefix", "A2E_NE_");
+aa.env.setValue("setBillingContactPrefix", "A2E_BC_");
 aa.env.setValue("emailAddress", "sallami@detroitmi.gov");
 aa.env.setValue("showDebug", "true");
 aa.env.setValue("sendEmailToContactTypes", "Billing Contact,Applicant");
-aa.env.setValue("emailTemplate", "LICENSE ABOUT TO EXPIRE 90 DAYS");
+aa.env.setValue("emailTemplate", "LICENSE ABOUT TO EXPIRE 30 DAYS");
 aa.env.setValue("BatchJobName", "ImanBatch");
 aa.env.setValue("createRenewalRecord", "Y");
 aa.env.setValue("vASICheck", null);
@@ -35,7 +35,7 @@ aa.env.setValue("vASIValue", null);
 aa.env.setValue("vASIExCheck", null);
 aa.env.setValue("vASIExValue", null);
 aa.env.setValue("vRunReport", "N");
-aa.env.setValue("lookAheadDays", "90");
+aa.env.setValue("lookAheadDays", "30");
 aa.env.setValue("daySpan", "6");
 //*/
 //aa.env.setValue("skipAppStatus", "Closed,Confirmed Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"); //Out of County MU,
@@ -302,6 +302,7 @@ function mainProcess() {
     var addrState = "";
     var addrZip = "";
     var addrFull = "";
+    
     logDebug("skipAppStatus " + skipAppStatus);
 
     //yy = startDate.getFullYear().toString().substr(2, 2);
@@ -415,6 +416,11 @@ function mainProcess() {
     expResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
     myExp;
 
+    
+    logDebug("expStatus =" + expStatus);
+    logDebug("expStatus =" + expStatus);
+    logDebug("expStatus =" + expStatus);
+    
     if (expResult.getSuccess()) {
         myExp = expResult.getOutput();
         logDebug("Processing " + myExp.length + " expiration records");
@@ -445,6 +451,10 @@ function mainProcess() {
         //get capId from expiration status model
         capId = aa.cap.getCapID(b1Exp.getCapID().getID1(), b1Exp.getCapID().getID2(), b1Exp.getCapID().getID3()).getOutput();
         logDebug("getcapId " + capId + "; b1Status " + b1Status);
+        
+        logDebug("b1ExpDate =" + b1ExpDate);
+        
+        
         if (!capId) {
             logDebug("Could not get a Cap ID for " + b1Exp.getCapID().getID1() + "-" + b1Exp.getCapID().getID2() + "-" + b1Exp.getCapID().getID3());
             continue;
