@@ -1,3 +1,0 @@
-function GlobalFlags(){
-LICENSESTATE = "MI";
-}
