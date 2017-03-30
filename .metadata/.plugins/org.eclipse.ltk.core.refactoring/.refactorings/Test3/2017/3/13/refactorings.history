@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;Test3/trunk/Scripts/Batch/LIC EXP&apos; to &apos;LIC EXP.js&apos;" description="Rename resource &apos;LIC EXP&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="trunk/Scripts/Batch/LIC EXP" name="LIC EXP.js" stamp="1490731166404" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;Test3/trunk/Scripts/Batch/LIC EXP.js&apos; to &apos;LICEXP.js&apos;" description="Rename resource &apos;LIC EXP.js&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="trunk/Scripts/Batch/LIC EXP.js" name="LICEXP.js" stamp="1490731301405" updateReferences="true"/>
+</session>

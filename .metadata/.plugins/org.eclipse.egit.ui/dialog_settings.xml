@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="0" key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel"/>
+	<item value="C:\Test Github\.git" key="GitSelectRepositoryPage.lastRepository"/>
+	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://github.com/NationalDev/Support3.git"/>
+		<item value="https://github.com/NationalDev/Supp3.git"/>
+	</list>
+	<list key="EGit.KnownHosts">
+		<item value="git.eclipse.org"/>
+		<item value="bitbucket.org"/>
+		<item value="github.com"/>
+	</list>
+	<list key="CommitDialog.authorValues">
+		<item value="IS&lt;nd.michigan@gmail.com&gt;"/>
+	</list>
+	<list key="CommitDialog.committerValues">
+		<item value="IS&lt;nd.michigan@gmail.com&gt;"/>
+	</list>
+	<section name="GitImportWizard">
+		<item value="true" key="GitProjectsImportPage.STORE_NESTED_PROJECTS"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.push.PushResultDialog.dialogBounds">
+		<item value="666" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="457" key="DIALOG_HEIGHT"/>
+		<item value="556" key="DIALOG_X_ORIGIN"/>
+		<item value="224" key="DIALOG_Y_ORIGIN"/>
+		<list key="sashWeights">
+			<item value="600"/>
+			<item value="400"/>
+		</list>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.pull.PullResultDialog.dialogBounds">
+		<item value="814" key="DIALOG_X_ORIGIN"/>
+		<item value="402" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="GitCommitMessageComponent">
+	</section>
+	<section name="org.eclipse.egit.ui.internal.dialogs.MergeTargetSelectionDialog.dialogBounds">
+		<item value="538" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="678" key="DIALOG_HEIGHT"/>
+		<item value="699" key="DIALOG_X_ORIGIN"/>
+		<item value="76" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.fetch.FetchResultDialog.dialogBounds">
+		<item value="616" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="457" key="DIALOG_HEIGHT"/>
+		<item value="606" key="DIALOG_X_ORIGIN"/>
+		<item value="224" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="GitCommitSearchPage">
+		<item value="1" key="HISTORY_SIZE"/>
+		<section name="HISTORY0">
+			<section name="searchSection">
+				<item value="1" key="repositoryCount"/>
+				<item value="C:\Supp3Scripts\.git" key="repository0"/>
+				<item value="false" key="regexSearch"/>
+				<item value="true" key="matchAuthor"/>
+				<item value="true" key="matchMessage"/>
+				<item value="true" key="ignoreCase"/>
+				<item value="true" key="matchParents"/>
+				<item value="false" key="allBranches"/>
+				<item value="true" key="matchCommit"/>
+				<item value="true" key="matchTree"/>
+				<item value="" key="textPattern"/>
+				<item value="true" key="matchCommitter"/>
+			</section>
+		</section>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
+		<item value="500,500" key="STAGING_SASH_FORM_WEIGHT"/>
+		<item value="false" key="sortItemState"/>
+		<item value="500,500" key="HORIZONTAL_SASH_FORM_WEIGHT"/>
+	</section>
+</section>
