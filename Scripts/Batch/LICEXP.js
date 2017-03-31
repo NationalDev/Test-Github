@@ -442,6 +442,7 @@ function mainProcess() {
             b1Exp = b1ExpResult.getOutput();
             b1ExpInfo = b1Exp.getB1Expiration();
             expDate = b1ExpInfo.getExpDate();
+            
             logDebug("expResult =" + expResult);
         }
         return expDate;
