@@ -309,6 +309,22 @@ function mainProcess() {
     var addrFull = "";
     
     logDebug("skipAppStatus " + skipAppStatus);
+    
+    function getCapExpirationDate(expResult) {
+        var expDate = null;
+        b1ExpResult = aa.expiration.getLicensesByCapID(expResult);
+        if (b1ExpResult.getSuccess()) {
+            b1Exp = b1ExpResult.getOutput();
+            b1ExpInfo = b1Exp.getB1Expiration();
+            expDate = b1ExpInfo.getExpDate();
+            
+            logDebug("expResult =" + expResult);
+        }
+        return expDate;
+}
+    
+    
+    
      
     //yy = startDate.getFullYear().toString().substr(2, 2);
     yy = startDate.getFullYear().toString(); //.substr(2, 2);
@@ -435,18 +451,7 @@ function mainProcess() {
         return false;
     }
 
-    function getCapExpirationDate(expResult) {
-        var expDate = null;
-        b1ExpResult = aa.expiration.getLicensesByCapID(expResult);
-        if (b1ExpResult.getSuccess()) {
-            b1Exp = b1ExpResult.getOutput();
-            b1ExpInfo = b1Exp.getB1Expiration();
-            expDate = b1ExpInfo.getExpDate();
-            
-            logDebug("expResult =" + expResult);
-        }
-        return expDate;
-}
+   
     
     
     
