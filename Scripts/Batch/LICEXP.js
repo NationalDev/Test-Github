@@ -372,9 +372,9 @@ function mainProcess() {
         vRecordsSet.update();
 
         //Add to processing set
-//        if (setProcessPrefix != "") {
-//            vProcessSet.add(setId);
-//        }
+        if (setProcessPrefix != "") {
+           vProcessSet.add(setId);
+        }
     }
 
     //Create a set of records where an email was sent
@@ -391,9 +391,9 @@ function mainProcess() {
         vEmailSet.update();
 
         //Add to processing set
-//        if (setProcessPrefix != "") {
-//            vProcessSet.add(setId);
-//        }
+        if (setProcessPrefix != "") {
+           vProcessSet.add(setId);
+        }
     }
 
     //Create a set of records where an email was not sent
@@ -410,9 +410,9 @@ function mainProcess() {
         vNonEmailSet.update();
 
         //Add to processing set
-//        if (setProcessPrefix != "") {
-//            vProcessSet.add(setId);
-//        }
+        if (setProcessPrefix != "") {
+            vProcessSet.add(setId);
+        }
     }
 
     //Create a set of sets of all Billing Contact sets
@@ -428,9 +428,9 @@ function mainProcess() {
         vBillingContactSet.comment = setDescription;
 
         //Add to processing set
-//        if (setProcessPrefix != "") {
-//            vProcessSet.add(setId);
-//        }
+        if (setProcessPrefix != "") {
+            vProcessSet.add(setId);
+        }
     }
 
     //Get all license records by their expiration date and expiration status
@@ -676,6 +676,19 @@ function mainProcess() {
                     }
                 }
             }
+            
+            function getCapExpirationDate(expResult) {
+                var expDate = null;
+                b1ExpResult = aa.expiration.getLicensesByCapID(expResult);
+                if (b1ExpResult.getSuccess()) {
+                    b1Exp = b1ExpResult.getOutput();
+                    b1ExpInfo = b1Exp.getB1Expiration();
+                    expDate = b1ExpInfo.getExpDate();
+                    
+                    logDebug("expResult =" + expResult);
+                }
+                return expDate;
+        }
         }
 
         vReport = null;
