@@ -12,7 +12,7 @@
 // Testing values.  Replace with batch parameters when testing is complete
 aa.env.setValue("fromDate", "01/01/2014");
 aa.env.setValue("toDate", "12/31/2020");
-aa.env.setValue("appGroup", "*");
+aa.env.setValue("appGroup", "Licenses");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
 aa.env.setValue("appCategory", "*");
@@ -35,7 +35,7 @@ aa.env.setValue("vASIValue", null);
 aa.env.setValue("vASIExCheck", null);
 aa.env.setValue("vASIExValue", null);
 aa.env.setValue("vRunReport", "N");
-aa.env.setValue("lookAheadDays", "300");
+aa.env.setValue("lookAheadDays", "30");
 aa.env.setValue("daySpan", "6");
 //*/
 //aa.env.setValue("skipAppStatus", "Closed,Confirmed Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"); //Out of County MU,
@@ -161,6 +161,8 @@ function getCapExpirationDate(expResult) {
     return expDate;
 }
 
+
+logDebug("expResult =" + expResult);
 
 
 
@@ -389,9 +391,9 @@ function mainProcess() {
         vRecordsSet.update();
 
         //Add to processing set
-        if (setProcessPrefix != "") {
-           vProcessSet.add(setId);
-        }
+//        if (setProcessPrefix != "") {
+//           vProcessSet.add(setId);
+//        }
     }
 
     //Create a set of records where an email was sent
@@ -408,9 +410,9 @@ function mainProcess() {
         vEmailSet.update();
 
         //Add to processing set
-        if (setProcessPrefix != "") {
-           vProcessSet.add(setId);
-        }
+//        if (setProcessPrefix != "") {
+//           vProcessSet.add(setId);
+//        }
     }
 
     //Create a set of records where an email was not sent
@@ -427,9 +429,9 @@ function mainProcess() {
         vNonEmailSet.update();
 
         //Add to processing set
-        if (setProcessPrefix != "") {
-            vProcessSet.add(setId);
-        }
+//        if (setProcessPrefix != "") {
+//            vProcessSet.add(setId);
+//        }
     }
 
     //Create a set of sets of all Billing Contact sets
@@ -445,9 +447,9 @@ function mainProcess() {
         vBillingContactSet.comment = setDescription;
 
         //Add to processing set
-        if (setProcessPrefix != "") {
-            vProcessSet.add(setId);
-        }
+//        if (setProcessPrefix != "") {
+//            vProcessSet.add(setId);
+//        }
     }
 
     //Get all license records by their expiration date and expiration status
