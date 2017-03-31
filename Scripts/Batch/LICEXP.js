@@ -150,6 +150,7 @@ var vRunReport = getParam("vRunReport");
 
 function getCapExpirationDate(expResult) {
     var expDate = null;
+    var expResult;
     b1ExpResult = aa.expiration.getLicensesByCapID(expResult);
     if (b1ExpResult.getSuccess()) {
         b1Exp = b1ExpResult.getOutput();
