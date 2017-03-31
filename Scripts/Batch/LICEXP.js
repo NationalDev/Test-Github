@@ -28,7 +28,7 @@ aa.env.setValue("emailAddress", "sallami@detroitmi.gov");
 aa.env.setValue("showDebug", "true");
 aa.env.setValue("sendEmailToContactTypes", "Billing Contact,Applicant");
 aa.env.setValue("emailTemplate", "LICENSE ABOUT TO EXPIRE 30 DAYS");
-aa.env.setValue("BatchJobName", "ImanBatch");
+aa.env.setValue("BatchJobName", "About2ExpireBatch");
 aa.env.setValue("createRenewalRecord", "Y");
 aa.env.setValue("vASICheck", null);
 aa.env.setValue("vASIValue", null);
@@ -222,6 +222,11 @@ else {
 | <===========END=Debug=Loop================>
 /------------------------------------------------------------------------------------------------------*/
 
+
+
+
+
+
 function mainProcess() {
     var capFilterType = 0;
     var capFilterInactive = 0;
@@ -304,7 +309,7 @@ function mainProcess() {
     var addrFull = "";
     
     logDebug("skipAppStatus " + skipAppStatus);
-
+     
     //yy = startDate.getFullYear().toString().substr(2, 2);
     yy = startDate.getFullYear().toString(); //.substr(2, 2);
     mm = (startDate.getMonth() + 1).toString();
@@ -430,6 +435,21 @@ function mainProcess() {
         return false;
     }
 
+    function getCapExpirationDate(expResult) {
+        var expDate = null;
+        b1ExpResult = aa.expiration.getLicensesByCapID(expResult);
+        if (b1ExpResult.getSuccess()) {
+            b1Exp = b1ExpResult.getOutput();
+            b1ExpInfo = b1Exp.getB1Expiration();
+            expDate = b1ExpInfo.getExpDate();
+            logDebug("expResult =" + expResult);
+        }
+        return expDate;
+}
+    
+    
+    
+    
     for (thisExp in myExp) {
         // for each b1expiration (effectively, each license app)
         if (elapsed() > maxSeconds) {
