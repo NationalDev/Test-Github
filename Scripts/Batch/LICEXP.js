@@ -160,10 +160,12 @@ function getCapExpirationDate(expResult) {
         logDebug("expResult =" + expResult);
     }
     return expDate;
+    logDebug("expResult =" + expResult);
+    logDebug("expDate =" + expDate);
 }
 
 
-logDebug("expResult =" + expResult);
+
 
 
 
