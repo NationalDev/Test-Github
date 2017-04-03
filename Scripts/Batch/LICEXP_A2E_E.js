@@ -481,7 +481,7 @@ function mainProcess() {
         logDebug("     " + altId + ": Renewal Status : " + b1Status + ", Expires on " + b1ExpDate); //LIC alt id
         capResult = aa.cap.getCap(capId);
 
-        LogDebug("b1ExpDate =", b1ExpDate);
+        logDebug("b1ExpDate =", b1ExpDate);
         
         
         if (!capResult.getSuccess()) {
