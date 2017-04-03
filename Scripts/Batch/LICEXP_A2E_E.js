@@ -414,11 +414,9 @@ function mainProcess() {
 
     //Get all license records by their expiration date and expiration status
     
-    var expObjRes = aa.expiration.getLicensesByCapID(newLicId);
+    var expObjRes = aa.expiration.getLicensesByCapID(capId);
     
-    
-    
-    
+       
     
     
     
