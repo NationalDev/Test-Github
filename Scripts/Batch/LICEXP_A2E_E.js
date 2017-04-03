@@ -15,6 +15,7 @@ aa.env.setValue("appGroup", "*");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
 aa.env.setValue("appCategory", "*");
+aa.env.setValue("ApplicationStatus", "About to Expire");
 aa.env.setValue("expirationStatus", "About to Expire");
 aa.env.setValue("newExpirationStatus", "Expired");
 aa.env.setValue("newApplicationStatus", "Expired");
@@ -105,18 +106,18 @@ else {
 |
 /------------------------------------------------------------------------------------------------------*/
 var skipAppStatus = "About to Expire,Expired,Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
-var fromDate = getParam("fromDate");							// Hardcoded dates.   Use for testing only
-var toDate = getParam("toDate");								// ""
+var fromDate = getParam("01/01/2014");							// Hardcoded dates.   Use for testing only
+var toDate = getParam("12/31/2020");								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
-var lookAheadDays = aa.env.getValue("lookAheadDays");			// Number of days from today
-var daySpan = aa.env.getValue("daySpan");						// Days to search (6 if run weekly, 0 if daily, etc.)
-var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
+var lookAheadDays = aa.env.getValue("-90");			// Number of days from today
+var daySpan = aa.env.getValue("0n");						// Days to search (6 if run weekly, 0 if daily, etc.)
+var appGroup = getParam("Licenses");							//   app Group to process {Licenses}
 var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
 var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
 var appCategory = getParam("appCategory");						//   app category to process {NA}
-var expStatus = getParam("expirationStatus");					//   test for this expiration status
-var newExpStatus = getParam("newExpirationStatus");				//   update to this expiration status
+var appStatus = getParam("About tp Expire");					//   test for this application status
+var expStatus = getParam("About tp Expire");					//   test for this expiration status
 var newAppStatus = getParam("newApplicationStatus");				//   update the CAP to this status
 var vASICheck = getParam("vASICheck");
 var vASIValue = getParam("vASIValue");
