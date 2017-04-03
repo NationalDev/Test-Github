@@ -105,13 +105,13 @@ else {
 | Start: BATCH PARAMETERS
 |
 /------------------------------------------------------------------------------------------------------*/
-var skipAppStatus = "About to Expire,Expired,Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
-var fromDate = getParam("01/01/2014");							// Hardcoded dates.   Use for testing only
-var toDate = getParam("12/31/2020");								// ""
+var skipAppStatus = "Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
+var fromDate = "01/01/2014";                 //getParam("01/01/2014");							// Hardcoded dates.   Use for testing only
+var toDate = "12/31/2020";            //getParam();								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
 var lookAheadDays = aa.env.getValue("-90");			// Number of days from today
-var daySpan = aa.env.getValue("0n");						// Days to search (6 if run weekly, 0 if daily, etc.)
+var daySpan = aa.env.getValue("0");						// Days to search (6 if run weekly, 0 if daily, etc.)
 var appGroup = getParam("Licenses");							//   app Group to process {Licenses}
 var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
 var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
