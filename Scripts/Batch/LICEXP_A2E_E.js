@@ -15,8 +15,8 @@ aa.env.setValue("appGroup", "*");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
 aa.env.setValue("appCategory", "*");
-aa.env.setValue("ApplicationStatus", "About to Expire" || "Expired");
-aa.env.setValue("expirationStatus", "About to Expire" || "Expired");
+aa.env.setValue("ApplicationStatus", "About to Expire");
+aa.env.setValue("expirationStatus", "About to Expire");
 aa.env.setValue("newExpirationStatus", "Expired");
 aa.env.setValue("newApplicationStatus", "Expired");
 aa.env.setValue("setProcessPrefix", "Expired_P_");
@@ -110,12 +110,12 @@ var fromDate = "01/01/2014";                 //getParam("01/01/2014");							// 
 var toDate = "12/31/2020";            //getParam();								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
-var lookAheadDays = aa.env.getValue("-90");			// Number of days from today
+var lookAheadDays = aa.env.getValue("300");			// Number of days from today
 var daySpan = aa.env.getValue("0");						// Days to search (6 if run weekly, 0 if daily, etc.)
-var appGroup = "";   //getParam("Licenses");							//   app Group to process {Licenses}
-var appTypeType = "";   //getParam("appTypeType");						//   app type to process {Rental License}
-var appSubtype = "";   //getParam("appSubtype");						//   app subtype to process {NA}
-var appCategory = "";   //getParam("appCategory");						//   app category to process {NA}
+var appGroup = "*";   //getParam("Licenses");							//   app Group to process {Licenses}
+var appTypeType = "*";   //getParam("appTypeType");						//   app type to process {Rental License}
+var appSubtype = "*";   //getParam("appSubtype");						//   app subtype to process {NA}
+var appCategory = "*";   //getParam("appCategory");						//   app category to process {NA}
 var appStatus = "About tp Expire";   //getParam("About tp Expire");					//   test for this application status
 var expStatus = "About tp Expire";   //getParam("About tp Expire");					//   test for this expiration status
 var newAppStatus = "Expired";    //getParam("newApplicationStatus");				//   update the CAP to this status
@@ -413,12 +413,47 @@ function mainProcess() {
     }
 
     //Get all license records by their expiration date and expiration status
+    
+    var expObjRes = aa.expiration.getLicensesByCapID(newLicId);
+    
+    
+    
+    
+    
+    
+    
+    
     expResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
     myExp;
 
     if (expResult.getSuccess()) {
         myExp = expResult.getOutput();
         logDebug("Processing " + myExp.length + " expiration records");
+        
+        
+        if(expObjRes.getSuccess()) var expObj = expObjRes.getOutput();
+        if (expObj != null) {
+            expDt = aa.date.parseDate(expObj.getExpDateString());
+        
+        logDebug("expDt = ", expDt);
+        
+        }
+
+        
+            
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     else {
         logDebug("ERROR: Getting Expirations, reason is: " + expResult.getErrorType() + ":" + expResult.getErrorMessage());
