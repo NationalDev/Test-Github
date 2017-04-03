@@ -34,7 +34,7 @@ aa.env.setValue("vASIValue", null);
 aa.env.setValue("vASIExCheck", null);
 aa.env.setValue("vASIExValue", null);
 aa.env.setValue("vRunReport", "N");
-aa.env.setValue("lookAheadDays", "30");
+aa.env.setValue("lookAheadDays", "-90");
 aa.env.setValue("daySpan", "6");
 //*/
 //aa.env.setValue("skipAppStatus", "Closed,Confirmed Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"); //Out of County MU,
