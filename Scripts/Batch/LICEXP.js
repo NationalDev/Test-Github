@@ -350,7 +350,7 @@ function mainProcess() {
 
         //Add to processing set
         if (setProcessPrefix != "") {
-            vProcessSet.add(setId);
+            vProcessSet.update(setId);
         }
     }
 
