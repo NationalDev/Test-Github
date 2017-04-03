@@ -129,7 +129,7 @@ var setRecordsPrefix = getParam("setRecordsPrefix");
 var setEmailPrefix = getParam("setEmailPrefix");
 var setNonEmailPrefix = getParam("setNonEmailPrefix");
 var setBillingContactPrefix = getParam("setBillingContactPrefix");
-var skipAppStatusArray = skipAppStatus.split(","); //getParam("skipAppStatus").split(",");	//   Skip records with one of these application statuses
+//  var skipAppStatusArray = skipAppStatus.split(","); //getParam("skipAppStatus").split(",");	//   Skip records with one of these application statuses
 var emailAddress = getParam("emailAddress");					// email to send report
 var sendEmailToContactTypes = getParam("sendEmailToContactTypes");// send out emails?
 var emailTemplate = getParam("emailTemplate");					// email Template. E.g., LICENSE ABOUT TO EXPIRE 90 DAYS
@@ -303,6 +303,7 @@ function mainProcess() {
     var addrState = "";
     var addrZip = "";
     var addrFull = "";
+    
     logDebug("skipAppStatus " + skipAppStatus);
 
     //yy = startDate.getFullYear().toString().substr(2, 2);
