@@ -462,7 +462,7 @@ function mainProcess() {
         if (expDate) {
             b1ExpDate = expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear();
         
-            LogDebug("b1ExpDate =", b1ExpDate);
+            logDebug("b1ExpDate =", b1ExpDate);
         }
         
         
