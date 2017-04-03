@@ -436,9 +436,11 @@ function mainProcess() {
         expDate = b1Exp.getExpDate();
         if (expDate) {
             b1ExpDate = expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear();
+        
+            LogDebug("b1ExpDate =", b1ExpDate);
         }
         
-        LogDebug("b1ExpDate =", b1ExpDate);
+        
         
         b1Status = b1Exp.getExpStatus();
         //get capId from expiration status model
