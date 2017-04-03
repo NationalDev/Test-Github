@@ -107,12 +107,12 @@ else {
 /------------------------------------------------------------------------------------------------------*/
 var skipAppStatus = /*"About to Expire,Expired,*/"Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
 var fromDate = "01/01/2014";   //getParam("fromDate");							// Hardcoded dates.   Use for testing only
-var toDate = "01/01/2020";   //getParam("toDate");								// ""
+var toDate = "12/31/2020";   //getParam("toDate");								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
 var lookAheadDays = aa.env.getValue("30");			// Number of days from today
-var daySpan = aa.env.getValue("0");						// Days to search (6 if run weekly, 0 if daily, etc.)
-var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
+var daySpan = aa.env.getValue("6");						// Days to search (6 if run weekly, 0 if daily, etc.)
+var appGroup = "Licenses";   //getParam("appGroup");							//   app Group to process {Licenses}
 var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
 var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
 var appCategory = getParam("appCategory");						//   app category to process {NA}
@@ -159,7 +159,7 @@ function getCapExpirationDate(expResult) {
     
        b1Exp=b1ExpResultRec.getOutput();
     
-       if (expObj != null) {
+       if (expResult != null) {
            expDt = aa.date.parseDate(expObj.getExpDateString());
        }
     
