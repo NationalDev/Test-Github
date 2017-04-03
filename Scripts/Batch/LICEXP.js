@@ -11,10 +11,10 @@
 // Testing values.  Replace with batch parameters when testing is complete
 aa.env.setValue("fromDate", "01/01/2014");
 aa.env.setValue("toDate", "12/31/2020");
-aa.env.setValue("appGroup", "LICENSES");
+aa.env.setValue("appGroup", "*");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
-aa.env.setValue("appCategory", "License");
+aa.env.setValue("appCategory", "*");
 aa.env.setValue("expirationStatus", "Active");
 aa.env.setValue("newExpirationStatus", "About to Expire");
 aa.env.setValue("newApplicationStatus", "About to Expire");
@@ -182,7 +182,7 @@ var appType = appGroup + "/" + appTypeType + "/" + appSubtype + "/" + appCategor
 | <===========Main=Loop================>
 |
 /-----------------------------------------------------------------------------------------------------*/
-logDebug("Environment: " + lookup("AGENCY_CONTACT_INFO", "01_Env"));
+//logDebug("Environment: " + lookup("AGENCY_CONTACT_INFO", "01_Env"));
 logDebug("appType " + appType);
 logDebug("Start of Job");
 
