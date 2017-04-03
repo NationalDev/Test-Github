@@ -9,8 +9,8 @@
 /------------------------------------------------------------------------------------------------------*/
 
 // Testing values.  Replace with batch parameters when testing is complete
-aa.env.setValue("fromDate", "01/01/2014");
-aa.env.setValue("toDate", "12/31/2020");
+aa.env.setValue("fromDate", "");
+aa.env.setValue("toDate", "");
 aa.env.setValue("appGroup", "*");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
