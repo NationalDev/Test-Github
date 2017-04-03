@@ -330,7 +330,7 @@ function mainProcess() {
         setDescription = setProcessPrefix + " : " + startDate.toLocaleString();
 
         //Create Process Set
-        vProcessSet = new setSet(setId, setName, null, setDescription);
+        vProcessSet = new capSet(setId, setName, null, setDescription);
         vProcessSet.name = setName;
         vProcessSet.comment = setDescription;
     }
@@ -343,7 +343,7 @@ function mainProcess() {
         setDescription = setRecordsPrefix + " : " + startDate.toLocaleString();
 
         //Create records Set
-        vRecordsSet = new capSet3_0(setId, setName, null, setDescription);
+        vRecordsSet = new capSet(setId, setName, null, setDescription);
         vRecordsSet.recSetType = "Billing";
         vRecordsSet.status = "Pending";
         vRecordsSet.update();
@@ -362,7 +362,7 @@ function mainProcess() {
         setDescription = setEmailPrefix + " : " + startDate.toLocaleString();
 
         //Create Email Set
-        vEmailSet = new capSet3_0(setId, setName, null, setDescription);
+        vEmailSet = new capSet(setId, setName, null, setDescription);
         vEmailSet.recSetType = "Billing";
         vEmailSet.status = "Pending";
         vEmailSet.update();
@@ -381,7 +381,7 @@ function mainProcess() {
         setDescription = setNonEmailPrefix + " : " + startDate.toLocaleString();
 
         //Create NonEmail Set
-        vNonEmailSet = new capSet3_0(setId, setName, null, setDescription);
+        vNonEmailSet = new capSet(setId, setName, null, setDescription);
         vNonEmailSet.recSetType = "Billing";
         vNonEmailSet.status = "Pending";
         vNonEmailSet.update();
@@ -400,7 +400,7 @@ function mainProcess() {
         setDescription = setBillingContactPrefix + " : " + startDate.toLocaleString();
 
         // Create Billing Contact Set of Sets
-        vBillingContactSet = new setSet(setId, setName, null, setDescription);
+        vBillingContactSet = new capSet(setId, setName, null, setDescription);
         vBillingContactSet.name = setName;
         vBillingContactSet.comment = setDescription;
 
