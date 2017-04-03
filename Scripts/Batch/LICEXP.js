@@ -148,13 +148,12 @@ var vRunReport = getParam("vRunReport");
 |
 /------------------------------------------------------------------------------------------------------*/
 
-function getCapExpirationDate(expResult) {
+function getCapExpirationDate() {
     var expDate = null;
     var expResult;
     var capID;
     var b1ExpResult;
     var expDt;
-   
     var b1ExpResultRec=aa.expiration.getLicensesByCapID(capId);
     
        b1Exp=b1ExpResultRec.getOutput();
@@ -163,12 +162,13 @@ function getCapExpirationDate(expResult) {
            expDt = aa.date.parseDate(expObj.getExpDateString());
        }
     
-} 
+ 
     logDebug("expResult =" + expResult);
     logDebug("expDate =" + expDate);
     logDebug("expDt =" + expDt);
-
-
+    logDebug("b1ExpResult =" + b1ExpResult);
+    logDebug("b1Exp =" + b1Exp);
+}
 
 
 
