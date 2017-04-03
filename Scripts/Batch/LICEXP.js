@@ -163,11 +163,11 @@ function getCapExpirationDate(expResult) {
            expDt = aa.date.parseDate(expObj.getExpDateString());
        }
     
-    
+} 
     logDebug("expResult =" + expResult);
     logDebug("expDate =" + expDate);
     logDebug("expDt =" + expDt);
-}
+
 
 
 
