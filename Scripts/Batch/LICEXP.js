@@ -153,16 +153,20 @@ function getCapExpirationDate(expResult) {
     var expResult;
     var capID;
     var b1ExpResult;
-    
+    var expDt;
    
     var b1ExpResultRec=aa.expiration.getLicensesByCapID(capId);
     
        b1Exp=b1ExpResultRec.getOutput();
     
+       if (expObj != null) {
+           expDt = aa.date.parseDate(expObj.getExpDateString());
+       }
     
     
     logDebug("expResult =" + expResult);
-    logDebug("expDate =" + b1Exp);
+    logDebug("expDate =" + expDate);
+    logDebug("expDt =" + expDt);
 }
 
 
