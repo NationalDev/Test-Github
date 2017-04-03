@@ -1,35 +1,33 @@
 /*------------------------------------------------------------------------------------------------------/
-| Program: Batch LICEXP.js  Trigger: Batch
+| Program: Batch License Expiration_TRL.js  Trigger: Batch
 | Client:
 |
 | Version 1.0 - Base Version. 11/01/08 JHS
 | Version 1.1 - Updated for Multco 09/10/14 ETW
 |               Modified 20151216 by NSS: added Enforcement as skip status; added Env print out
-| Version 2.0   Modified 20170328 by Iman Sallam	
 |
 /------------------------------------------------------------------------------------------------------*/
 
-
 // Testing values.  Replace with batch parameters when testing is complete
-aa.env.setValue("fromDate", "");
-aa.env.setValue("toDate", "");
-aa.env.setValue("appGroup", "*");
+aa.env.setValue("fromDate", "01/01/2014");
+aa.env.setValue("toDate", "12/31/2020");
+aa.env.setValue("appGroup", "LICENSES");
 aa.env.setValue("appTypeType", "*");
 aa.env.setValue("appSubtype", "*");
-aa.env.setValue("appCategory", "*");
-aa.env.setValue("expirationStatus", "About to Expire");
-aa.env.setValue("newExpirationStatus", "Expired");
-aa.env.setValue("newApplicationStatus", "Expired");
-aa.env.setValue("setProcessPrefix", "EXP_P_");
-aa.env.setValue("setRecordsPrefix", "EXP_R_");
-aa.env.setValue("setEmailPrefix", "EXP_E_");
-aa.env.setValue("setNonEmailPrefix", "EXP_NE_");
-aa.env.setValue("setBillingContactPrefix", "EXP_BC_");
-aa.env.setValue("emailAddress", "sallami@detroitmi.gov");
+aa.env.setValue("appCategory", "License");
+aa.env.setValue("expirationStatus", "Active");
+aa.env.setValue("newExpirationStatus", "About to Expire");
+aa.env.setValue("newApplicationStatus", "About to Expire");
+aa.env.setValue("setProcessPrefix", "2Expire_P_");
+aa.env.setValue("setRecordsPrefix", "2Expire_R_");
+aa.env.setValue("setEmailPrefix", "2Expire_E_");
+aa.env.setValue("setNonEmailPrefix", "2Expire_NE_");
+aa.env.setValue("setBillingContactPrefix", "2Expire_BC_");
+aa.env.setValue("emailAddress", "");
 aa.env.setValue("showDebug", "true");
 aa.env.setValue("sendEmailToContactTypes", "Billing Contact,Applicant");
-aa.env.setValue("emailTemplate", "LICENSE EXPIRED");
-aa.env.setValue("BatchJobName", "ExpiredBatch");
+aa.env.setValue("emailTemplate", "LICENSE ABOUT TO EXPIRE 90 DAYS");
+aa.env.setValue("BatchJobName", "2ExpireBatch");
 aa.env.setValue("createRenewalRecord", "Y");
 aa.env.setValue("vASICheck", null);
 aa.env.setValue("vASIValue", null);
@@ -47,11 +45,11 @@ aa.env.setValue("daySpan", "6");
 /------------------------------------------------------------------------------------------------------*/
 var debug = "";
 var emailText = "";
-var maxSeconds = 5 * 60;		// number of seconds allowed for batch processing, usually < 5*60
+var maxSeconds = 200 * 60;		// number of seconds allowed for batch processing, usually < 5*60
 var message = "";
 var br = "<br>";
 var showDebug = true;
-var showMessage = true;
+var showMessage = false;
 
 var appTypeArray;
 var capId;
@@ -106,14 +104,14 @@ else {
 | Start: BATCH PARAMETERS
 |
 /------------------------------------------------------------------------------------------------------*/
-var skipAppStatus = /*"About to Expire,Expired,*/"Active,Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
-var fromDate = "01/01/2014";   //getParam("fromDate");							// Hardcoded dates.   Use for testing only
-var toDate = "01/01/2020";   //getParam("toDate");								// ""
+var skipAppStatus = "About to Expire,Expired,Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
+var fromDate = getParam("fromDate");							// Hardcoded dates.   Use for testing only
+var toDate = getParam("toDate");								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
-var lookAheadDays = aa.env.getValue("100");			// Number of days from today
-var daySpan = aa.env.getValue("0");						// Days to search (6 if run weekly, 0 if daily, etc.)
-var appGroup = getParam("licenses");   //							//   app Group to process {Licenses}
+var lookAheadDays = aa.env.getValue("lookAheadDays");			// Number of days from today
+var daySpan = aa.env.getValue("daySpan");						// Days to search (6 if run weekly, 0 if daily, etc.)
+var appGroup = getParam("appGroup");							//   app Group to process {Licenses}
 var appTypeType = getParam("appTypeType");						//   app type to process {Rental License}
 var appSubtype = getParam("appSubtype");						//   app subtype to process {NA}
 var appCategory = getParam("appCategory");						//   app category to process {NA}
@@ -149,7 +147,7 @@ var vRunReport = getParam("vRunReport");
 |
 /------------------------------------------------------------------------------------------------------*/
 var startDate = new Date();
-var timeExpired = true;
+var timeExpired = false;
 
 if (!fromDate.length) {// no "from" date, assume today + number of days to look ahead
     fromDate = dateAdd(null, parseInt(lookAheadDays));
@@ -163,7 +161,6 @@ acaSite = acaSite.substr(0, acaSite.toUpperCase().indexOf("/ADMIN"));
 
 logDebug("Date Range -- fromDate: " + fromDate + ", toDate: " + toDate);
 logDebug("expStatus to process " + expStatus);
-
 var startTime = startDate.getTime();			// Start timer
 var systemUserObj = aa.person.getUser("ADMIN").getOutput();
 
@@ -185,7 +182,7 @@ var appType = appGroup + "/" + appTypeType + "/" + appSubtype + "/" + appCategor
 | <===========Main=Loop================>
 |
 /-----------------------------------------------------------------------------------------------------*/
-//logDebug("Environment: " + lookup("AGENCY_CONTACT_INFO", "01_Env"));
+logDebug("Environment: " + lookup("AGENCY_CONTACT_INFO", "01_Env"));
 logDebug("appType " + appType);
 logDebug("Start of Job");
 
@@ -304,10 +301,6 @@ function mainProcess() {
     var addrState = "";
     var addrZip = "";
     var addrFull = "";
-    var capStatus = null;
-    
-    capStatus = cap.getStatus();
-    
     logDebug("skipAppStatus " + skipAppStatus);
 
     //yy = startDate.getFullYear().toString().substr(2, 2);
@@ -332,34 +325,29 @@ function mainProcess() {
     //Create a set of sets processed via this batch
     if (setProcessPrefix != "") {
         //setId = setProcessPrefix.substr(0, 5) + yy; // + mm + dd + hh + mi;
-        setId = setProcessPrefix + yy + mm + dd + hh + mi;
+        setId = setProcessPrefix + yy; // + mm + dd + hh + mi;
         setName = setProcessPrefix + " Renewals Set of Sets";
         setDescription = setProcessPrefix + " : " + startDate.toLocaleString();
 
         //Create Process Set
-        vProcessSet = new capSet(setId, setName, null, setDescription);
-        
-        logDebug("vProcessSet =" + vProcessSet);
-        
+        vProcessSet = new setSet(setId, setName, null, setDescription);
         vProcessSet.name = setName;
         vProcessSet.comment = setDescription;
     }
 
     //Create a set of all records processed by this batch
     if (setRecordsPrefix != "") {
-        setId = setRecordsPrefix + yy + mm + dd + hh + mi;
+        setId = setRecordsPrefix + yy; // + mm + dd + hh + mi;
         //setId = setRecordsPrefix.substr(0, 5) + yy + mm + dd + hh + mi;
         setName = setRecordsPrefix + " Processed Set";
         setDescription = setRecordsPrefix + " : " + startDate.toLocaleString();
 
         //Create records Set
-        vRecordsSet = new capSet(setId, setName, null, setDescription);
+        vRecordsSet = new capSet3_0(setId, setName, null, setDescription);
         vRecordsSet.recSetType = "Billing";
         vRecordsSet.status = "Pending";
         vRecordsSet.update();
 
-        
-        
         //Add to processing set
         if (setProcessPrefix != "") {
             vProcessSet.add(setId);
@@ -374,7 +362,7 @@ function mainProcess() {
         setDescription = setEmailPrefix + " : " + startDate.toLocaleString();
 
         //Create Email Set
-        vEmailSet = new capSet(setId, setName, null, setDescription);
+        vEmailSet = new capSet3_0(setId, setName, null, setDescription);
         vEmailSet.recSetType = "Billing";
         vEmailSet.status = "Pending";
         vEmailSet.update();
@@ -385,7 +373,24 @@ function mainProcess() {
         }
     }
 
-000000000000
+    //Create a set of records where an email was not sent
+    if (setNonEmailPrefix != "") {
+        //setId = setNonEmailPrefix.substr(0, 5) + yy + mm + dd + hh + mi;
+        setId = setNonEmailPrefix + yy; // + mm + dd + hh + mi;
+        setName = setNonEmailPrefix + " Non-Email Set";
+        setDescription = setNonEmailPrefix + " : " + startDate.toLocaleString();
+
+        //Create NonEmail Set
+        vNonEmailSet = new capSet3_0(setId, setName, null, setDescription);
+        vNonEmailSet.recSetType = "Billing";
+        vNonEmailSet.status = "Pending";
+        vNonEmailSet.update();
+
+        //Add to processing set
+        if (setProcessPrefix != "") {
+            vProcessSet.add(setId);
+        }
+    }
 
     //Create a set of sets of all Billing Contact sets
     if (setBillingContactPrefix != "") {
@@ -395,7 +400,7 @@ function mainProcess() {
         setDescription = setBillingContactPrefix + " : " + startDate.toLocaleString();
 
         // Create Billing Contact Set of Sets
-        vBillingContactSet = new capSet(setId, setName, null, setDescription);
+        vBillingContactSet = new setSet(setId, setName, null, setDescription);
         vBillingContactSet.name = setName;
         vBillingContactSet.comment = setDescription;
 
@@ -409,13 +414,6 @@ function mainProcess() {
     expResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
     myExp;
 
-    logDebug("expResult =" + expResult);
-    
-// if ()    
-    
-    logDebug("b1Exp.getExpDate() =" + b1Exp.getExpDate());
-    
-    
     if (expResult.getSuccess()) {
         myExp = expResult.getOutput();
         logDebug("Processing " + myExp.length + " expiration records");
@@ -436,13 +434,12 @@ function mainProcess() {
 
         b1Exp = myExp[thisExp];
         expDate = b1Exp.getExpDate();
-        
-        logDebug("expDate =" + expDate);
-        logDebug("b1Exp.getExpDate() =" + b1Exp.getExpDate());
-        
         if (expDate) {
             b1ExpDate = expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear();
         }
+        
+        LogDebug("b1ExpDate =", b1ExpDate)
+        
         b1Status = b1Exp.getExpStatus();
         //get capId from expiration status model
         capId = aa.cap.getCapID(b1Exp.getCapID().getID1(), b1Exp.getCapID().getID2(), b1Exp.getCapID().getID3()).getOutput();
@@ -620,7 +617,7 @@ function mainProcess() {
                     setDescription = vConObj.people.getFullName() + " : " + startDate.toLocaleString();
 
                     //Get or Create unique Billing Contact Set
-                    vContactSet = new capSet(setId, setName, null, setDescription);
+                    vContactSet = new capSet3_0(setId, setName, null, setDescription);
                     vContactSet.recSetType = "Billing";
                     vContactSet.status = "Pending";
                     vContactSet.update();
@@ -714,7 +711,7 @@ function mainProcess() {
         for (w in vBillingContactSet.members) {
             thisSet = vBillingContactSet.members[w];
             thisSetId = thisSet.getSetID()
-            vtmpCapSet = new capSet(thisSetId);
+            vtmpCapSet = new capSet3_0(thisSetId);
             if (vtmpCapSet.size <= 1) {
                 vBillingContactSet.remove(thisSetId);
                 aa.set.removeSetHeader(thisSetId);
