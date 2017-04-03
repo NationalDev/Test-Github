@@ -106,8 +106,8 @@ else {
 |
 /------------------------------------------------------------------------------------------------------*/
 var skipAppStatus = "Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"; //20161103 Out of County MU,Confirmed Closed,
-var fromDate = "01/01/2014";                 //getParam("01/01/2014");							// Hardcoded dates.   Use for testing only
-var toDate = "12/31/2020";            //getParam();								// ""
+var fromDate = "";                 //getParam("01/01/2014");							// Hardcoded dates.   Use for testing only
+var toDate = "";            //getParam();								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
 var lookAheadDays = aa.env.getValue("300");			// Number of days from today
