@@ -26,7 +26,7 @@ aa.env.setValue("setNonEmailPrefix", "Expired_NE_");
 aa.env.setValue("setBillingContactPrefix", "Expired_BC_");
 aa.env.setValue("emailAddress", "");
 aa.env.setValue("showDebug", "true");
-aa.env.setValue("sendEmailToContactTypes", "Contractor of Record,Applicant");
+aa.env.setValue("sendEmailToContactTypes", "Contractor of Record", "Applicant");
 aa.env.setValue("emailTemplate", "LICENSE Expired");
 aa.env.setValue("BatchJobName", "ExpiredBatch");
 aa.env.setValue("createRenewalRecord", "Y");
@@ -132,7 +132,7 @@ var setBillingContactPrefix = getParam("setBillingContactPrefix");
 var skipAppStatusArray = skipAppStatus.split(","); //getParam("skipAppStatus").split(",");	//   Skip records with one of these application statuses
 var emailAddress = getParam("emailAddress");					// email to send report
 var sendEmailToContactTypes = getParam("sendEmailToContactTypes");// send out emails?
-var emailTemplate = getParam("emailTemplate");					// email Template. E.g., LICENSE ABOUT TO EXPIRE 90 DAYS
+var emailTemplate = getParam("Expired");					// email Template. E.g., LICENSE ABOUT TO EXPIRE 90 DAYS
 var createRenewalRecord = getParam("createRenewalRecord");	// create a temporary record
 var currentUserID = "ADMIN"; // Current User
 var disableTokens = false;		// turn off tokenizing of std choices (enables use of "{} and []")
@@ -599,7 +599,7 @@ function mainProcess() {
 
         vAllOptIn = true;
         vExOptIn = null;
-        conTypeArray = sendEmailToContactTypes.split("Applicant, Contractor of Record");
+        conTypeArray = sendEmailToContactTypes.split("Applicant", "Contractor of Record");
         conEmailList = "";
         conEmailArray = [];
         var fileNames = [];
