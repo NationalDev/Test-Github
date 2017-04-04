@@ -434,12 +434,12 @@ function mainProcess() {
         if (expObj != null) {
             expDt = aa.date.parseDate(expObj.getExpDateString());
         
-        logDebug("expDt = ", expDt);
+       
         
         }
 
         
-      
+        logDebug("expDt = ", expDt);
         
         
     }
