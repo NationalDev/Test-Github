@@ -35,7 +35,7 @@ aa.env.setValue("vASIValue", null);
 aa.env.setValue("vASIExCheck", null);
 aa.env.setValue("vASIExValue", null);
 aa.env.setValue("vRunReport", "N");
-aa.env.setValue("lookAheadDays", "-90");
+aa.env.setValue("lookAheadDays", "0");
 aa.env.setValue("daySpan", "6");
 //*/
 //aa.env.setValue("skipAppStatus", "Closed,Confirmed Closed,Denied,Enforcement,Pending,Surveillance,Suspended,Terminated,Voided,Withdrawn,Withheld"); //Out of County MU,
@@ -110,7 +110,7 @@ var fromDate = "01/01/2014";                 //getParam("01/01/2014");							// 
 var toDate = "12/31/2024";            //getParam();								// ""
 var dFromDate = aa.date.parseDate(fromDate);					//
 var dToDate = aa.date.parseDate(toDate);						//
-var lookAheadDays = aa.env.getValue("300");			// Number of days from today
+var lookAheadDays = aa.env.getValue("0");			// Number of days from today
 var daySpan = aa.env.getValue("0");						// Days to search (6 if run weekly, 0 if daily, etc.)
 var appGroup = "*";   //getParam("Licenses");							//   app Group to process {Licenses}
 var appTypeType = "*";   //getParam("appTypeType");						//   app type to process {Rental License}
