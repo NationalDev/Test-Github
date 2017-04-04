@@ -619,7 +619,7 @@ function mainProcess() {
                 if (vExOptIn != "CHECKED") {
                     vAllOptIn = false;
                 }
-                if (conTypeArray[z] == "Billing Contact") {
+                if (conTypeArray[z] == "Applicant") {
                     var vAddress = vConObj.people.getCompactAddress();
                     addrStreet = vAddress.getAddressLine1() + "";
                     addrLine2 = vAddress.getAddressLine2() + "";
