@@ -26,7 +26,7 @@ aa.env.setValue("setNonEmailPrefix", "Expired_NE_");
 aa.env.setValue("setBillingContactPrefix", "Expired_BC_");
 aa.env.setValue("emailAddress", "");
 aa.env.setValue("showDebug", "true");
-aa.env.setValue("sendEmailToContactTypes", "Contractor of Record", "Applicant");
+aa.env.setValue("sendEmailToContactTypes", "Applicant");
 aa.env.setValue("emailTemplate", "LICENSE Expired");
 aa.env.setValue("BatchJobName", "ExpiredBatch");
 aa.env.setValue("createRenewalRecord", "Y");
