@@ -417,11 +417,6 @@ function mainProcess() {
     
     var expObjRes = aa.expiration.getLicensesByCapID(capId);
     
-       
-    
-    
-    
-    
     expResult = aa.expiration.getLicensesByDate(expStatus, fromDate, toDate);
     myExp;
 
@@ -435,6 +430,17 @@ function mainProcess() {
             expDt = aa.date.parseDate(expObj.getExpDateString());
         
        
+            if (expDt < startDate + 30 ) {
+            	
+            	newAppStatus = "About to Expire";    
+            	newExpStatus = "About to Expire";
+            }
+            
+            else {
+            	
+            	newAppStatus = "Expired";    //getParam("newApplicationStatus");				//   update the CAP to this status
+            	newExpStatus = "Expired";
+            }
         
         }
 
