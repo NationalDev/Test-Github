@@ -599,7 +599,7 @@ function mainProcess() {
 
         vAllOptIn = true;
         vExOptIn = null;
-        conTypeArray = sendEmailToContactTypes.split(",");
+        conTypeArray = sendEmailToContactTypes.split("Applicant, Contractor of Record");
         conEmailList = "";
         conEmailArray = [];
         var fileNames = [];
