@@ -430,16 +430,18 @@ function mainProcess() {
             expDt = aa.date.parseDate(expObj.getExpDateString());
         
        
-            if (expDt < startDate + 30 ) {
+            if (expDt <= startDate  ) {
             	
-            	newAppStatus = "About to Expire";    
-            	newExpStatus = "About to Expire";
+            	
+               	newAppStatus = "Expired";    
+            	newExpStatus = "Expired";
+            	
             }
             
             else {
             	
-            	newAppStatus = "Expired";    //getParam("newApplicationStatus");				//   update the CAP to this status
-            	newExpStatus = "Expired";
+            	newAppStatus = "About to Expire";    
+            	newExpStatus = "About to Expire";
             }
         
             logDebug("expDt = ", expDt);
