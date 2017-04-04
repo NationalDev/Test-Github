@@ -442,10 +442,12 @@ function mainProcess() {
             	newExpStatus = "Expired";
             }
         
+            logDebug("expDt = ", expDt);
+            
         }
 
         
-        logDebug("expDt = ", expDt);
+        
         
         
     }
