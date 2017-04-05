@@ -550,7 +550,9 @@ function mainProcess() {
         if (newAppStatus.length > 0) {
         	
         	if (b1ExpDate >= startDate) {
-        		newAppStatus = "Expired"}
+        		newAppStatus = "Expired"
+        			continue;
+        	}
         	
             updateAppStatus(newAppStatus, "");
             logDebug("          " + altId + ": Updated Application Status to " + newAppStatus);
