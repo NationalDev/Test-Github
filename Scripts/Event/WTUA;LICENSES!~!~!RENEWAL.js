@@ -2,9 +2,6 @@
 //Iman Sallam, City of Detroit
 //Deploy with the script code and script title below (all caps)
 //WTUA:LICENSES/*/*/RENEWAL
-//Contact to RefProf if SubTypeContractorRegistration?
-
-
 
 
 //wftask=License Status OR Renewal Review
@@ -43,11 +40,11 @@ var E_TRANSACTION_STATUS_AUTHORIZED = 3;
 var E_TRANSACTION_STATUS_REVERSED = 4;
 var E_TRANSACTION_CAPTURE_SUCCESS = 0;
 var E_TRANSACTION_REVERSE_SUCCESS = 0;
-var DEPARTMENT = "Economy";
-var PROVIDER = "Economy";
+var DEPARTMENT = "LICENSE";
+var PROVIDER = "DETROIT";
 var DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
 var mailFrom = "Auto_Sender@Accela.com";
-var mailCC = "sallami@detroitmi.gov";
+var mailCC = "SALLAMI@DETROITMI.GOV";
 // -------------------------------------------------------------------------------------------------
 
 var capID = getCapId();
@@ -79,7 +76,7 @@ logDebug("1. Check to see if the license reviewing was approved by agency user."
  aa.env.getValue("ProcessID"),  //process ID
  aa.env.getValue("WorkflowStatus"))) //task status
 */
-if ((wfTask=="License Issuance" || wfTask=="Licensing Review") && (wfStatus == "Renewed" || wfStatus=="Approved for Renewal"))
+if ((wfTask=="License Review" || wfTask=="Licensing Issuance") && (wfStatus == "Approved for Renewal" || wfStatus=="Renewed"))
 {
     logDebug("2. Get parent license CAPID");
     var parentLicenseCAPID = getParentCapID4Renewal();
@@ -106,7 +103,7 @@ if ((wfTask=="License Issuance" || wfTask=="Licensing Review") && (wfStatus == "
                 {
                     logDebug("6. Set renewal CAP status to \"Complete\"");
                     renewalCapProject.setStatus("Complete");
-                    aa.print("Permit(" + parentLicenseCAPID + ") is activated.");
+                    aa.print("License(" + parentLicenseCAPID + ") is activated.");
                     aa.cap.updateProject(renewalCapProject);
                     logDebug("7. Copy key information from child CAP to parent CAP.");
                     copyKeyInfo(capID, parentLicenseCAPID);
@@ -227,7 +224,7 @@ function isWorkflowApproveForReview(capID, wfTask, stepNum, processID, taskStatu
             return false;
         }
         //2. Check to see if the agency user approve renewal application .
-        if (("License Issuance" == wfTask || "Licensing Review" == wfTask) && ("Renewed" == wfStatus || "Approved for Renewal" == wfStatus))
+        if ((wfTask=="License Review" || wfTask=="Licensing Issuance") && (wfStatus == "Approved for Renewal" || wfStatus=="Renewed"))
         {
             return true;
         }
@@ -472,9 +469,9 @@ function copyAppSpecificInfo(srcCapId, targetCapId)
     {
         var sourceAppSpecificInfoModel = appSpecificInfo[loopk];
         
-        sourceAppSpecificInfoModel.setPermitID1(targetCapId.getID1());
-        sourceAppSpecificInfoModel.setPermitID2(targetCapId.getID2());
-        sourceAppSpecificInfoModel.setPermitID3(targetCapId.getID3());
+        sourceAppSpecificInfoModel.setLicenseID1(targetCapId.getID1());
+        sourceAppSpecificInfoModel.setLicenseID2(targetCapId.getID2());
+        sourceAppSpecificInfoModel.setLicenseID3(targetCapId.getID3());
         //3. Edit ASI on target CAP (Copy info from source to target)
         aa.appSpecificInfo.editAppSpecInfoValue(sourceAppSpecificInfoModel);
     }
@@ -1196,9 +1193,9 @@ function getCapDetailByID(capId)
 
 function getCapId()
 {
-    var id1 = aa.env.getValue("PermitId1");
-    var id2 = aa.env.getValue("PermitId2");
-    var id3 = aa.env.getValue("PermitId3");
+    var id1 = aa.env.getValue("LicenseId1");
+    var id2 = aa.env.getValue("LicenseId2");
+    var id3 = aa.env.getValue("LicenseId3");
     
     var s_capResult = aa.cap.getCapIDModel(id1, id2, id3);
     if(s_capResult.getSuccess())
@@ -1629,7 +1626,7 @@ function getAllAuthorizedTransactions(entityID)
     var transSearchModel = aa.finance.createTransactionScriptModel();
     transSearchModel.setProvider(PROVIDER);
     transSearchModel.setStatus("Authorized");
-    transSearchModel.setFeeType("Permit");
+    transSearchModel.setFeeType("License");
     transSearchModel.setEntityID(entityID);
     transSearchModel.setAuditStatus("A");
     
@@ -1708,7 +1705,7 @@ function getAgencyTransaction(transactions)
     var agencyTransaction = null;
     for (var i = 0; i < transactions.length; i++)
     {
-        if ("Permit" == transactions[i].getFeeType())
+        if ("License" == transactions[i].getFeeType())
         {
             agencyTransaction = transactions[i];
             aa.log("Agency transaction: " + agencyTransaction.getTransactionNumber());
@@ -1866,4 +1863,3 @@ function getPartialCapID(capid)
     }
 }
 // ---------------------------------------------------------------------------------------------------
-   
