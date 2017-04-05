@@ -6,6 +6,8 @@
 | Version 1.1 - Updated for Multco 09/10/14 ETW
 |               Modified 20151216 by NSS: added Enforcement as skip status; added Env print out
 |
+| Version 2.0 - Customized for City of Detroit Business Rules - 
+|				by Iman Sallam 04/05/2017
 /------------------------------------------------------------------------------------------------------*/
 
 // Testing values.  Replace with batch parameters when testing is complete
