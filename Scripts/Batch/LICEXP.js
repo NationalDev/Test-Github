@@ -539,6 +539,7 @@ function mainProcess() {
         if (newExpStatus.length > 0) {
         	if (b1ExpDate >= startDate) {
         		newExpStatus = "Expired"}
+        	continue;
         	}
         	
             b1Exp.setExpStatus(newExpStatus);
