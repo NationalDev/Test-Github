@@ -441,6 +441,12 @@ function mainProcess() {
         LogDebug("b1ExpDate =", b1ExpDate);
         
         b1Status = b1Exp.getExpStatus();
+        
+        if (b1ExpDate >= startDate) {
+        	
+        	
+        }
+        
         //get capId from expiration status model
         capId = aa.cap.getCapID(b1Exp.getCapID().getID1(), b1Exp.getCapID().getID2(), b1Exp.getCapID().getID3()).getOutput();
         logDebug("getcapId " + capId + "; b1Status " + b1Status);
@@ -454,7 +460,7 @@ function mainProcess() {
         logDebug("     " + altId + ": Renewal Status : " + b1Status + ", Expires on " + b1ExpDate); //LIC alt id
         capResult = aa.cap.getCap(capId);
 
-        LogDebug("b1ExpDate =", b1ExpDate);
+        logDebug("b1ExpDate =", b1ExpDate);
         
         
         if (!capResult.getSuccess()) {
@@ -529,13 +535,23 @@ function mainProcess() {
 
         // update expiration status
         if (newExpStatus.length > 0) {
+        	if (b1ExpDate >= startDate) {
+        		newExpStatus = "Expired"}
+        	}
+        	
             b1Exp.setExpStatus(newExpStatus);
+            
+            
             aa.expiration.editB1Expiration(b1Exp.getB1Expiration());
             logDebug("          " + altId + ": Update expiration status: " + newExpStatus);
         }
 
         // update CAP status
         if (newAppStatus.length > 0) {
+        	
+        	if (b1ExpDate >= startDate) {
+        		newAppStatus = "Expired"}
+        	
             updateAppStatus(newAppStatus, "");
             logDebug("          " + altId + ": Updated Application Status to " + newAppStatus);
         }
