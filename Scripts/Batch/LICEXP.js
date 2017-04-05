@@ -536,12 +536,11 @@ function mainProcess() {
         }
 
         // update expiration status
-        if (newExpStatus.length > 0) {
-        	if (b1ExpDate >= startDate) {
-        		newExpStatus = "Expired"}
-        	continue;
-        	}
+        if (newExpStatus.length > 0 && b1ExpDate >= startDate) {
         	
+        	newExpStatus = "Expired";
+        			
+         	
             b1Exp.setExpStatus(newExpStatus);
             
             
@@ -550,13 +549,11 @@ function mainProcess() {
         }
 
         // update CAP status
-        if (newAppStatus.length > 0) {
+        if (newAppStatus.length > 0 && b1ExpDate >= startDate) {
         	
-        	if (b1ExpDate >= startDate) {
-        		newAppStatus = "Expired"
-        			continue;
-        	}
         	
+        	newAppStatus = "Expired"
+                	        	
             updateAppStatus(newAppStatus, "");
             logDebug("          " + altId + ": Updated Application Status to " + newAppStatus);
         }
