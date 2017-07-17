@@ -19,7 +19,8 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
       
     monthsToInitialExpire = 12;
     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
-    
+   
+    var myCapId = capIDString;
     var capId = aa.cap.getCapID(myCapId).getOutput();
     
     
