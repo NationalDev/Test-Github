@@ -16,15 +16,14 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     newLicId = null;
     newLicIdString = null;
 //    newLicenseType = "Business";
-    var b1ExpDate ;
-    
+      
     monthsToInitialExpire = 12;
     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
     // create the license record;
     if (newLicId) {
         newLicIdString = newLicId.getCustomID();
         updateAppStatus("Active","Originally Issued",newLicId);
-       editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
+//       editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
         }
     
     
@@ -44,7 +43,8 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         thisLic = new licenseObject(newLicIdString,newLicId);
 //        thisLic.setExpiration(dateAdd(tmpNewDate,0));
      
-      thisLic.setExpiration(b1ExpDate);
+    
+        thisLic.getExpiration();
         thisLic.setStatus("Active");
         }
 
