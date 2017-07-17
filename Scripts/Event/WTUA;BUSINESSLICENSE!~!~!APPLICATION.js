@@ -35,7 +35,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
  //   var ignoreArr = new Array();
   //  if(ignore != null) ignoreArr = ignore.split("|");
   //  copyAppSpecific(newLicId,ignoreArr);
-    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
+ //   tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
 
     
     if (newLicId) {
