@@ -41,6 +41,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
 //        thisLic.setExpiration(dateAdd(tmpNewDate,0));
+     thisLic.setExpiration();
         thisLic.setStatus("Active");
         }
 
