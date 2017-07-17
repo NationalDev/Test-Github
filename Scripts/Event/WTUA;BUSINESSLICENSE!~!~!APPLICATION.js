@@ -19,6 +19,11 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
       
     monthsToInitialExpire = 12;
     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
+    
+    var capId = aa.cap.getCapID(myCapId).getOutput();
+    
+    
+    
     // create the license record;
     if (newLicId) {
         newLicIdString = newLicId.getCustomID();
@@ -45,6 +50,8 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
      
         
         b1ExpResult = aa.expiration.getLicensesByCapID(capId);
+        
+        
         var b1Exp = b1ExpResult.getOutput();
         var expDate = b1Exp.getExpDate();
         
