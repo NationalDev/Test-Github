@@ -47,17 +47,22 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         b1ExpResult = aa.expiration.getLicensesByCapID(capId);
         var b1Exp = b1ExpResult.getOutput();
         var expDate = b1Exp.getExpDate();
+        
         thisLic.setExpiration(expDate);
         
         
       
         thisLic.setStatus("Active");
         }
-
+    
+    
+//    logDebug("expDate" + expDate);
+    
+    
+    
     if (newLicId) {
         changeCapContactTypes("Applicant","License Holder", newLicId);
         }
-
     
     
     if (newLicId) {
@@ -68,5 +73,5 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         copyASITables(capId,newLicId);
         }
     logDebug("Business License Issued");
-    logDebug("expDate" + expDate);
+   
 	}
