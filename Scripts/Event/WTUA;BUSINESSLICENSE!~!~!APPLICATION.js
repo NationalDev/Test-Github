@@ -49,7 +49,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         var expDate = b1Exp.getExpDate();
         thisLic.setExpiration(expDate);
         
-        logDebug("expDate" + expDate);
+        
       
         thisLic.setStatus("Active");
         }
@@ -68,4 +68,5 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         copyASITables(capId,newLicId);
         }
     logDebug("Business License Issued");
+    logDebug("expDate" + expDate);
 	}
