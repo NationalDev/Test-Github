@@ -37,29 +37,26 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
 //    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
 //*************************************************************************************
 
-//*************MY ADDITION************************************    
     
     var myCapId = capIDString;
     var capId = aa.cap.getCapID(myCapId).getOutput();
     b1ExpResult = aa.expiration.getLicensesByCapID(capId);
     var b1Exp = b1ExpResult.getOutput();
     var expDate = b1Exp.getExpDate();
-    var newexpDate =  dateAddMonths(expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear(),24);
+//    var newexpDate =  dateAddMonths(expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear(),24);
     
-//    licEditExpInfo("Active", newexpDate);
-    
-    
-
-     
     
    
    if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
         thisLic.setExpiration(dateAdd(expDate));
         thisLic.setStatus("Active");
+        thisLic.setExpiration(dateAdd(newexpDate));
+     //   licEditExpInfo("Active", newexpDate);
+        
         }
    
-   logDebug("Expdate:" + expDate +"--" +newexpDate + "--" + newLicId + "--" +b1Exp+ "--" +capId+ "--" +newLicIdString+ "--");
+   logDebug("Expdate:" + expDate +"--" + "--" + newLicId + "--" +b1Exp+ "--" +capId+ "--" +newLicIdString+ "--");
    
    
    
