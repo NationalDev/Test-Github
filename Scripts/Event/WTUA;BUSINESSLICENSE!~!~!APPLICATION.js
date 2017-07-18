@@ -42,7 +42,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
 //      var myCapId = "ALTID"
     	var capId = aa.cap.getCapID(newLicId).getOutput();
 
-    	b1ExpResult = aa.expiration.getCapID(newLicId);
+    	b1ExpResult = aa.expiration.getCapID(capId);
     	
     	
     	if (b1ExpResult.getSuccess())
