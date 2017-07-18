@@ -25,10 +25,16 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
         }
 //******************************************************************************    
+    logDebug("Business License Issued" + "--" + newLicId+ "--" + thisLic + "--" +capId);
+    
+    b1ExpResult = aa.expiration.getLicensesByCapID(capId);
+    var b1Exp = b1ExpResult.getOutput();
     var newexpDate =   b1Exp.getExpDate(capId);
     
     licEditExpInfo("Active", newexpDate);
 
+    aa.print("Expiration Date: " + expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear());
+    aa.print("Expiration Status: " + b1Exp.getExpStatus());
 
 //***********************************************************************
   
