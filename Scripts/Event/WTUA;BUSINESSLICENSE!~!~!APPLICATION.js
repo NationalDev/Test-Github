@@ -28,16 +28,19 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
    //************************************************************** 
     
    
+    function getCapExpirationDate(itemCap) {
         var expDate = null;
-        b1ExpResult = aa.expiration.getLicensesByCapID(capId);
+        b1ExpResult = aa.expiration.getLicensesByCapID(itemCap);
         if (b1ExpResult.getSuccess()) {
             b1Exp = b1ExpResult.getOutput();
             b1ExpInfo = b1Exp.getB1Expiration();
             expDate = b1ExpInfo.getExpDate();
         }
+        return expDate;
+}
         
 
-    
+    var newDate = getCapExpirationDate(newLicId);
   
     
 
@@ -46,7 +49,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.setExpiration(expDate);
+        thisLic.setExpiration(newDate);
         thisLic.setStatus("Active");
         }
 
