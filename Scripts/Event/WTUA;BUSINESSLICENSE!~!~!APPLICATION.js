@@ -59,7 +59,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         thisLic.setStatus("Active");
         }
    
-   logDebug("Expdate:" + expDate +"--" +newexpDate + "--" + newLicId);
+   logDebug("Expdate:" + expDate +"--" +newexpDate + "--" + newLicId + "--" +b1Exp+ "--" +capId+ "--" +newLicIdString+ "--" +b1ExpResult);
    
    
    
