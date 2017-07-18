@@ -15,7 +15,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
 	newLic = null;
     newLicId = null;
     newLicIdString = null;
-    newLicenseType = "Business";
+//    newLicenseType = "Business";
     monthsToInitialExpire = 12;
     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
     // create the license record;
