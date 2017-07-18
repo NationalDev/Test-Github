@@ -41,7 +41,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     
     var myCapId = capIDString;
     var capId = aa.cap.getCapID(myCapId).getOutput();
-    b1ExpResult = aa.expiration.getLicensesByCapID(newLicID);
+    b1ExpResult = aa.expiration.getLicensesByCapID(newLicId);
     var b1Exp = b1ExpResult.getOutput();
     var expDate = b1Exp.getExpDate();
     var newexpDate =  dateAddMonths(expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear(),24);
