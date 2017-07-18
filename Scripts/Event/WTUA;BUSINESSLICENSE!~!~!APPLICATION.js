@@ -1,9 +1,9 @@
 //*********************************************************************************************************/
-//	WTUA;LICENSES!~!~!APPLICATION.js																	       /
+//	WTUA;BUSINESSLICENSE!~!~!APPLICATION.js																	       /
 //																			Iman Sallam @ City of Detroit  /
 //		Deploy with the script code and script title below (all caps)									   /
 //																								           /
-//					WTUA:LICENSES/*/*/APPLICATION														   / 							
+//					WTUA:BUSINESSLICENSE/*/*/APPLICATION														   / 							
 //																										   /
 //*********************************************************************************************************/
 //WTUA:BUSINESSLICENSE/*/*/APPLICATION script
@@ -15,8 +15,8 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
 	newLic = null;
     newLicId = null;
     newLicIdString = null;
-//    newLicenseType = "Business";
-//    monthsToInitialExpire = 12;
+    newLicenseType = "Business";
+    monthsToInitialExpire = 12;
     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
     // create the license record;
     if (newLicId) {
@@ -24,7 +24,9 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         updateAppStatus("Active","Originally Issued",newLicId);
         //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
         }
-//****************************************************************************************    
+    
+    
+    
 //    appName = getAppName(capId);
 //    editAppName(appName,newLicId);
     //line added by CIH 03012016;
@@ -33,38 +35,15 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
  //   var ignoreArr = new Array();
   //  if(ignore != null) ignoreArr = ignore.split("|");
   //  copyAppSpecific(newLicId,ignoreArr);
-//************************************************************************************    
-//    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
-//*************************************************************************************
+    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
 
     
-    var myCapId = capIDString;
-    var capId = aa.cap.getCapID(myCapId).getOutput();
-    b1ExpResult = aa.expiration.getLicensesByCapID(capId);
-    var b1Exp = b1ExpResult.getOutput();
-    var expDate = b1Exp.getExpDate();
-//    var newexpDate =  dateAddMonths(expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear(),24);
-    
-    
-   
-   if (newLicId) {
+    if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.setExpiration(dateAdd(expDate));
+        thisLic.setExpiration(dateAdd(tmpNewDate,0));
         thisLic.setStatus("Active");
-        thisLic.setExpiration(capId);
-     //   licEditExpInfo("Active", newexpDate);
-        
         }
-   
-   logDebug("Expdate:" + expDate +"--" + "--" + newLicId + "--" +b1Exp+ "--" +capId+ "--" +newLicIdString+ "--");
-   
-   
-   
-   
-//***************************************************************
-    
-    
-    
+
     if (newLicId) {
         changeCapContactTypes("Applicant","License Holder", newLicId);
         }
