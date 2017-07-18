@@ -38,7 +38,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         return expDate;
 }
     
-    
+    var expDate = null; 
     
 
 //    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
