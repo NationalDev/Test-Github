@@ -29,7 +29,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     
     b1ExpResult = aa.expiration.getLicensesByCapID(capId);
     var b1Exp = b1ExpResult.getOutput();
-    var newexpDate =   b1Exp.getCode();
+    var newexpDate =   b1Exp.getCode(b1ExpDate);
     
     licEditExpInfo("Active", newexpDate);
 
