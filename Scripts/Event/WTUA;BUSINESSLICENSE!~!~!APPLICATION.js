@@ -24,25 +24,29 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         updateAppStatus("Active","Originally Issued",newLicId);
         //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
         }
-//******************************************************************************    
-    logDebug("Business License Issued" + "--" + newLicId+ "--" + newLicIdString + "--" +capId);
     
-    b1ExpResult = aa.expiration.getLicensesByCapID(capId);
-    var b1Exp = b1ExpResult.getOutput();
-    var newexpDate =   b1Exp.getCode(b1ExpDate);
+   //************************************************************** 
     
-    licEditExpInfo("Active", newexpDate);
+    function getCapExpirationDate(itemCap) {
+        var expDate = null;
+        b1ExpResult = aa.expiration.getLicensesByCapID(itemCap);
+        if (b1ExpResult.getSuccess()) {
+            b1Exp = b1ExpResult.getOutput();
+            b1ExpInfo = b1Exp.getB1Expiration();
+            expDate = b1ExpInfo.getExpDate();
+        }
+        return expDate;
+}
+    
+    
+    
 
-    aa.print("Expiration Date: " + expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear());
-    aa.print("Expiration Status: " + b1Exp.getExpStatus());
+//    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
 
-//***********************************************************************
-  
     
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.b1ExpDate;
-        thisLic.setExpiration(b1ExpDate);
+        thisLic.setExpiration(expDate);
         thisLic.setStatus("Active");
         }
 
@@ -57,5 +61,5 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     if (newLicId) {
         copyASITables(capId,newLicId);
         }
-    logDebug("Business License Issued" + "--" + newLicId+ "--" + thisLic + "--" +capId);
+    logDebug("Business License Issued" + "---" + expDate);
 	}
