@@ -13,7 +13,7 @@ showDebug = true, showMessage = true;
 
 function getCapExpirationDate() {
     var expDate = null;
-    b1ExpResult = aa.expiration.getLicensesByCapID(itemCap);
+    b1ExpResult = aa.expiration.getLicensesByCapID();
     if (b1ExpResult.getSuccess()) {
         b1Exp = b1ExpResult.getOutput();
         b1ExpInfo = b1Exp.getB1Expiration();
