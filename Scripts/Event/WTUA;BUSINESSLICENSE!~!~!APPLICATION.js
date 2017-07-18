@@ -40,7 +40,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
 //*************MY ADDITION************************************    
     
 //      var myCapId = "ALTID"
-    	var capId = aa.cap.getCapID(newLicID).getOutput();
+    	var capId = aa.cap.getCapID(newLicId).getOutput();
 
     	b1ExpResult = aa.expiration.getCapID(newLicId);
     	
