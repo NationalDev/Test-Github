@@ -1,35 +1,28 @@
-// Standard Choices
-// 1 - LIC Issue Business License
-// 2 - LIC Establish Links to Reference Contacts
-// Issue the business license by doing the following:  Create the license record,  expiration date and status. 
-// Ensure that all Record contacts are based on reference contacts.  
-// These are called by the WTUA:Licenses/Business(Contractor)/*/Application BPT script.
-// Accela 2/8/2016 - Also called by the WTUA:BUSINESSLICENSE/*/*/APPLICATION script for CoD
-// EMSE 3.0
+//*********************************************************************************************************/
+//	WTUA;LICENSES!~!~!APPLICATION.js																	       /
+//																			Iman Sallam @ City of Detroit  /
+//		Deploy with the script code and script title below (all caps)									   /
+//																								           /
+//					WTUA:LICENSES/*/*/APPLICATION														   / 							
+//																										   /
+//*********************************************************************************************************/
 //WTUA:BUSINESSLICENSE/*/*/APPLICATION script
 //WTUA;BUSINESSLICENSE!~!~!APPLICATION
-//showDebug = true, showMessage = true;
+showDebug = true, showMessage = true;
 if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on businesslicense Application record to trigger creation of parent License record
 	//branch("LIC Establish Links to Reference Contacts"); 		// May not be needed on BusinessLicense 
 	//branch("LIC Issue Business License");						//added line 04 to this SC to getAppName from Application record and copy to parent Liceense record
 	newLic = null;
     newLicId = null;
     newLicIdString = null;
-//    newLicenseType = "Business";
-      
+    newLicenseType = "Business";
     monthsToInitialExpire = 12;
     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
-   
-    var myCapId = capIDString;
-    var capId = aa.cap.getCapID(myCapId).getOutput();
-    
-    
-    
     // create the license record;
     if (newLicId) {
         newLicIdString = newLicId.getCustomID();
         updateAppStatus("Active","Originally Issued",newLicId);
-//       editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
+        //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
         }
     
     
@@ -42,37 +35,19 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
  //   var ignoreArr = new Array();
   //  if(ignore != null) ignoreArr = ignore.split("|");
   //  copyAppSpecific(newLicId,ignoreArr);
- //   tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
+    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
 
     
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
-
-     
-        
-        b1ExpResult = aa.expiration.getLicensesByCapID(capId);
-        
-        
-        var b1Exp = b1ExpResult.getOutput();
-        var expDate = b1Exp.getExpDate();
-        
-        thisLic.setExpiration(expDate);
-        
-        
-      
+        thisLic.setExpiration(dateAdd(tmpNewDate,0));
         thisLic.setStatus("Active");
         }
-    
-    
-//    logDebug("expDate" + expDate);
-    
-    
-    
+
     if (newLicId) {
         changeCapContactTypes("Applicant","License Holder", newLicId);
         }
-    
-    
+
     if (newLicId) {
         copyOwner(capId, newLicId);
         }
@@ -81,5 +56,4 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         copyASITables(capId,newLicId);
         }
     logDebug("Business License Issued");
-   
 	}
