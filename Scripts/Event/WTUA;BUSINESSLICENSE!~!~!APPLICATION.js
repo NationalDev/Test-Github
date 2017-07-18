@@ -48,7 +48,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     
     licEditExpInfo("Active", newexpDate);
     
-    logDebug("Expdate:" + expDate +"--" +newexpDate + "--" + myCapId);
+    logDebug("Expdate:" + expDate +"--" +newexpDate + "--" + newLicId);
 
     
     
