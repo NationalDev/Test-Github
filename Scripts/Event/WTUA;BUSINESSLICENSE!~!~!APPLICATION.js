@@ -46,19 +46,24 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     var expDate = b1Exp.getExpDate();
     var newexpDate =  dateAddMonths(expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear(),24);
     
-    licEditExpInfo("Active", newexpDate);
+//    licEditExpInfo("Active", newexpDate);
     
-    logDebug("Expdate:" + expDate +"--" +newexpDate + "--" + newLicId);
+    
 
+     
     
-    
-    
-//***************************************************************    
-//    if (newLicId) {
-//        thisLic = new licenseObject(newLicIdString,newLicId);
-//        thisLic.setExpiration(dateAdd(tmpNewDate,0));
-//        thisLic.setStatus("Active");
-//        }
+   
+   if (newLicId) {
+        thisLic = new licenseObject(newLicIdString,newLicId);
+        thisLic.setExpiration(dateAdd(expDate,0));
+        thisLic.setStatus("Active");
+        }
+   
+   logDebug("Expdate:" + expDate +"--" +newexpDate + "--" + newLicId);
+   
+   
+   
+   
 //***************************************************************
     
     
