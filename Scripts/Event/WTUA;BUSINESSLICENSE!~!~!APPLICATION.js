@@ -16,7 +16,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     newLicId = null;
     newLicIdString = null;
 //    newLicenseType = "Business";
-    monthsToInitialExpire = 12;
+//    monthsToInitialExpire = 12;
     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
     // create the license record;
     if (newLicId) {
@@ -24,9 +24,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         updateAppStatus("Active","Originally Issued",newLicId);
         //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
         }
-    
-    
-    
+//****************************************************************************************    
 //    appName = getAppName(capId);
 //    editAppName(appName,newLicId);
     //line added by CIH 03012016;
@@ -35,15 +33,45 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
  //   var ignoreArr = new Array();
   //  if(ignore != null) ignoreArr = ignore.split("|");
   //  copyAppSpecific(newLicId,ignoreArr);
-    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
+//************************************************************************************    
+//    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
+//*************************************************************************************
+
+//*************MY ADDITION************************************    
+    
+//      var myCapId = "ALTID"
+    	var capId = aa.cap.getCapID(newLicID).getOutput();
+
+    	b1ExpResult = aa.expiration.getCapID(newLicId);
+    	
+    	
+    	if (b1ExpResult.getSuccess())
+    	{
+    	 var b1Exp = b1ExpResult.getOutput();
+    	 var expDate = b1Exp.getExpDate();
+    	 aa.print("Expiration Date: " + expDate.getMonth() + "/" + expDate.getDayOfMonth() + "/" + expDate.getYear());
+    	 aa.print("Expiration Status: " + b1Exp.getExpStatus());
+
+    	}
+    	else
+    	{ 
+    	 aa.print("**ERROR: Getting B1Expiration Object for Cap.  Reason is: " + b1ExpResult.getErrorType() + ":" + b1ExpResult.getErrorMessage()) ; 
+    	}
+
 
     
-    if (newLicId) {
-        thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.setExpiration(dateAdd(tmpNewDate,0));
-        thisLic.setStatus("Active");
-        }
-
+    
+    
+//***************************************************************    
+//    if (newLicId) {
+//        thisLic = new licenseObject(newLicIdString,newLicId);
+//        thisLic.setExpiration(dateAdd(tmpNewDate,0));
+//        thisLic.setStatus("Active");
+//        }
+//***************************************************************
+    
+    
+    
     if (newLicId) {
         changeCapContactTypes("Applicant","License Holder", newLicId);
         }
