@@ -8,7 +8,25 @@
 //*********************************************************************************************************/
 //WTUA:BUSINESSLICENSE/*/*/APPLICATION script
 //WTUA;BUSINESSLICENSE!~!~!APPLICATION
+
 showDebug = true, showMessage = true;
+
+function getCapExpirationDate() {
+    var expDate = null;
+    b1ExpResult = aa.expiration.getLicensesByCapID(itemCap);
+    if (b1ExpResult.getSuccess()) {
+        b1Exp = b1ExpResult.getOutput();
+        b1ExpInfo = b1Exp.getB1Expiration();
+        expDate = b1ExpInfo.getExpDate();
+    }
+    return expDate;
+}
+
+
+
+
+
+
 if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on businesslicense Application record to trigger creation of parent License record
 	//branch("LIC Establish Links to Reference Contacts"); 		// May not be needed on BusinessLicense 
 	//branch("LIC Issue Business License");						//added line 04 to this SC to getAppName from Application record and copy to parent Liceense record
@@ -28,16 +46,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
    //************************************************************** 
     
    
-    function getCapExpirationDate(itemCap) {
-        var expDate = null;
-        b1ExpResult = aa.expiration.getLicensesByCapID(itemCap);
-        if (b1ExpResult.getSuccess()) {
-            b1Exp = b1ExpResult.getOutput();
-            b1ExpInfo = b1Exp.getB1Expiration();
-            expDate = b1ExpInfo.getExpDate();
-        }
-        return expDate;
-}
+    
         
 
     var newDate = getCapExpirationDate(newLicId);
