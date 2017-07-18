@@ -24,23 +24,18 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
         updateAppStatus("Active","Originally Issued",newLicId);
         //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
         }
+//******************************************************************************    
+    var newexpDate =   b1Exp.getExpDate(capId);
     
-    
-    
-//    appName = getAppName(capId);
-//    editAppName(appName,newLicId);
-    //line added by CIH 03012016;
-    //var ignore = lookup("EMSE:ASI Copy Exceptions","License/*/*/*");
-//    var ignore = ASICopyExceptions(newLicId);
- //   var ignoreArr = new Array();
-  //  if(ignore != null) ignoreArr = ignore.split("|");
-  //  copyAppSpecific(newLicId,ignoreArr);
-    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
+    licEditExpInfo("Active", newexpDate);
 
+
+//***********************************************************************
+  
     
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.setExpiration(dateAdd(tmpNewDate,0));
+        thisLic.setExpiration(dateAdd(capId));
         thisLic.setStatus("Active");
         }
 
@@ -55,5 +50,5 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     if (newLicId) {
         copyASITables(capId,newLicId);
         }
-    logDebug("Business License Issued");
+    logDebug("Business License Issued" + "--" + newLicId+ "--" + thisLic + "--" +capId);
 	}
