@@ -8,10 +8,10 @@
 */
 
 
-function getCapExpirationDate() // option capId
+function getCapExpirationDate(itemCap) // option capId
 {
     var expDate = null;
-    b1ExpResult = aa.expiration.getLicensesByCapID();
+    b1ExpResult = aa.expiration.getLicensesByCapID(itemCap);
     if (b1ExpResult.getSuccess()) {
         b1Exp = b1ExpResult.getOutput();
         b1ExpInfo = b1Exp.getB1Expiration();
