@@ -14,6 +14,22 @@ showDebug = true, showMessage = true;
 
 showDebug = "true"; 
 logDebug("Start of Job" + " "); 
+
+if (wfTask == "License Issuance" && wfStatus == "Issued") { 	
+	
+	newLic = null;
+    newLicId = null;
+    newLicIdString = null;
+////    newLicenseType = "Business";
+////    monthsToInitialExpire = 12;
+    newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
+//    // create the license record;
+    if (newLicId) {
+        newLicIdString = newLicId.getCustomID();
+        updateAppStatus("Active","Originally Issued",newLicId);
+//        //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
+        }
+
 mainProcess(); 
 
 function mainProcess() 
@@ -64,20 +80,7 @@ function mainProcess()
 
 ////*****************************************************************************************************
 //
-//if (wfTask == "License Issuance" && wfStatus == "Issued") { 	
-//	
-//	newLic = null;
-//    newLicId = null;
-//    newLicIdString = null;
-////    newLicenseType = "Business";
-////    monthsToInitialExpire = 12;
-//    newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
-//    // create the license record;
-//    if (newLicId) {
-//        newLicIdString = newLicId.getCustomID();
-//        updateAppStatus("Active","Originally Issued",newLicId);
-//        //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
-//        }
+
 //    
 //   //**************************************************************   
 //          
@@ -89,22 +92,22 @@ function mainProcess()
 ////    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
 //
 //    
-//    if (newLicId) {
-//        thisLic = new licenseObject(newLicIdString,newLicId);
-//        thisLic.setExpiration(newDate);
-//        thisLic.setStatus("Active");
-//        }
-//
-//    if (newLicId) {
-//        changeCapContactTypes("Applicant","License Holder", newLicId);
-//        }
-//
-//    if (newLicId) {
-//        copyOwner(capId, newLicId);
-//        }
-//
-//    if (newLicId) {
-//        copyASITables(capId, newLicId);
-//        }
-//    logDebug("Business License Issued" + "---" + expDate);
-//	}
+    if (newLicId) {
+        thisLic = new licenseObject(newLicIdString,newLicId);
+        thisLic.setExpiration(expDate);
+        thisLic.setStatus("Active");
+        }
+
+    if (newLicId) {
+        changeCapContactTypes("Applicant","License Holder", newLicId);
+        }
+
+    if (newLicId) {
+        copyOwner(capId, newLicId);
+        }
+
+    if (newLicId) {
+        copyASITables(capId, newLicId);
+        }
+    logDebug("Business License Issued" + "---" + expDate);
+	}
