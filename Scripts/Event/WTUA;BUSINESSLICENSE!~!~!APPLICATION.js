@@ -30,7 +30,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
    //**************************************************************   
           
 
-    var newDate = getCapExpirationDate(newLicId);
+    var newDate = getCapExpirationDate(capId);
   
 //    var newDate1 = getCapExpirationDate(capId);
 
