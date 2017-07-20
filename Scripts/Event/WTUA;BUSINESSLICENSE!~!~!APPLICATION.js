@@ -14,22 +14,6 @@ showDebug = true, showMessage = true;
 
 showDebug = "true"; 
 logDebug("Start of Job" + " "); 
-
-if (wfTask == "License Issuance" && wfStatus == "Issued") { 	
-	
-	newLic = null;
-    newLicId = null;
-    newLicIdString = null;
-////    newLicenseType = "Business";
-////    monthsToInitialExpire = 12;
-    newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
-//    // create the license record;
-    if (newLicId) {
-        newLicIdString = newLicId.getCustomID();
-        updateAppStatus("Active","Originally Issued",newLicId);
-//        //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
-        }
-
 mainProcess(); 
 
 function mainProcess() 
@@ -59,7 +43,7 @@ function mainProcess()
 			logDebug("Attempting to use 'getExpStatus()' for " + thisCapId + " expirying on this date: " + expDate); 
 			if (expStat.equalsIgnoreCase("About to Expire")) 
 			{ 
-				if (expDate.equals("2016-03-31")) 
+				if (expDate.equals("2017-12-31")) 
 				{ 
 					logDebug("Expiration Status: " + expStat); 
 					/* the following status change doesn't appear to get saved or committed*/ 
@@ -94,7 +78,7 @@ function mainProcess()
 //    
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.setExpiration(expDate);
+        thisLic.setExpiration(newDate);
         thisLic.setStatus("Active");
         }
 
