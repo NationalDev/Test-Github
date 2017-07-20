@@ -65,20 +65,31 @@ function mainProcess()
 ////*****************************************************************************************************
 //
 
-//    
-//   //**************************************************************   
-//          
-//
-//    var newDate = getCapExpirationDate(capId);
-//  
-////    var newDate1 = getCapExpirationDate(capId);
-//
-////    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
-//
-//    
+if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on businesslicense Application record to trigger creation of parent License record
+	//branch("LIC Establish Links to Reference Contacts"); 		// May not be needed on BusinessLicense 
+	//branch("LIC Issue Business License");						//added line 04 to this SC to getAppName from Application record and copy to parent Liceense record
+	newLic = null;
+    newLicId = null;
+    newLicIdString = null;
+    newLicenseType = "Business";
+    monthsToInitialExpire = 12;
+    newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
+    // create the license record;
+    if (newLicId) {
+        newLicIdString = newLicId.getCustomID();
+        updateAppStatus("Active","Originally Issued",newLicId);
+        //editAppName(AInfo['Doing Business As (DBA) Name'],newLicId);
+        }
+    
+    
+    
+
+    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
+
+    
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.setExpiration(newDate);
+        thisLic.setExpiration(dateAdd(tmpNewDate,0));
         thisLic.setStatus("Active");
         }
 
@@ -91,7 +102,7 @@ function mainProcess()
         }
 
     if (newLicId) {
-        copyASITables(capId, newLicId);
+        copyASITables(capId,newLicId);
         }
-    logDebug("Business License Issued" + "---" + expDate);
+    logDebug("Business License Issued");
 	}
