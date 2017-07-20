@@ -104,5 +104,5 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
     if (newLicId) {
         copyASITables(capId,newLicId);
         }
-    logDebug("Business License Issued");
+    logDebug("Business License Issued" + expDate);
 	}
