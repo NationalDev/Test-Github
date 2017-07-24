@@ -20,7 +20,18 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     newLicId = null;
     newLicIdString = null;
 
+    var b1ExpResult = aa.expiration.getLicensesByCapID(thisCapId); 
+	var b1Exp = b1ExpResult.getOutput(); 
+	var expDate = b1Exp.getExpDateString();
+	var expStat = b1Exp.getExpStatus();
+	
+	logDebug("Attempting to use 'getExpStatus()' for " + thisCapId + " expirying on this date: " + expDate); 
+    
+    
     monthsToInitialExpire = 12;
+    
+    
+    
     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
     // create the license record;
     if (newLicId) {
@@ -37,9 +48,24 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
 
         editAppName(getAppSpecific("Doing Business As (DBA) Name"),newLicId);
     }
-
+//*****************************************************************************************************
     
-    tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
+  	
+//	if (expStat.equalsIgnoreCase("About to Expire")) 
+//	{ 
+//		if (expDate.equals("2017-12-31")) 
+//		{ 
+//			logDebug("Expiration Status: " + expStat); 
+//			/* the following status change doesn't appear to get saved or committed*/ 
+//			b1Exp.setExpStatus("Active"); 
+//
+//			//To save the above change, you must use the following call to commit your updates
+//			aa.expiration.editB1Expiration(b1Exp.getB1Expiration()); 
+//    
+    
+//*****************************************************************************************************    
+    
+    tmpNewDate = dateAddMonths(expDate, monthsToInitialExpire);
     
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
