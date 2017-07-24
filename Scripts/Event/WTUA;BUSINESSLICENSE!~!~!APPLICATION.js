@@ -49,7 +49,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.setExpiration(expDate);
+        thisLic.setExpiration(tmpNewDate);
         thisLic.setStatus("Active");
         }
 
@@ -64,5 +64,5 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     if (newLicId) {
         copyASITables(capId,newLicId);
         }
-    logDebug("Business License Issued" + expDate);
+    logDebug("Business License Issued" + tmpNewDate);
 	}
