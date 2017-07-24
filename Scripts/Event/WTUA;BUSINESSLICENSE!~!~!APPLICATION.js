@@ -36,12 +36,12 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         editAppName(capName,newLicId);       
         updateAppStatus("Active","Originally Issued",newLicId);
         
-        var b1ExpResult = aa.expiration.getLicensesByCapID(newLicId); 
+        var b1ExpResult = aa.expiration.getLicensesByCapID(capId); 
     	var b1Exp = b1ExpResult.getOutput(); 
     	var expDate = b1Exp.getExpDateString();
     	var expStat = b1Exp.getExpStatus();
     	
-    	logDebug("Attempting to use 'getExpStatus()' for " + newLicId + " expirying on this date: " + expDate); 
+    	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
 
         editAppName(getAppSpecific("Doing Business As (DBA) Name"),newLicId);
     }
