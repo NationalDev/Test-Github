@@ -95,13 +95,13 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") { 	//Status on busines
 
     
     if (newLicId) {
-        thisLic = new licenseObject(newLicIdString,newLicId);
+        thisLic = new licenseObject(newLicIdString,capId);
         thisLic.setExpiration(expDate);
         thisLic.setStatus("Active");
         }
 
     if (newLicId) {
-        changeCapContactTypes("Applicant","License Holder", newLicId);
+        changeCapContactTypes("Applicant","License Holder", capId);
         }
 
     if (newLicId) {
