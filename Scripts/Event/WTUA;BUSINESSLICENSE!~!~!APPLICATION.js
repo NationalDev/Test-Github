@@ -13,22 +13,6 @@ if (wfStatus == "Request for Corrections") {
         sendExternalReviewNotification();   
 }
 
-if (wfTask == "License Issuance" && wfStatus == "Issued") {
-    newLic = null;
-    newLicId = null;
-    newLicIdString = null;
-    capName = null;
-    newLicenseType = appTypeArray[2];
-    monthsToInitialExpire = 12;
-//    newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
-    // create the permit record;
-//    if (newLicId) {
-//        newLicIdString = newLicId.getCustomID();
-//        updateAppStatus("Issued","Originally Issued",newLicId);
-        
-    }
-
-}
 
 if (wfTask == "License Issuance" && wfStatus == "Issued") {
 //->branch("LIC Issue Business License");
