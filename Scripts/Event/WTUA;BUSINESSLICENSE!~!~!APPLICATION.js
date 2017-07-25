@@ -75,7 +75,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.setExpiration(dateAdd(tmpNewDate,0));
+        thisLic.setExpiration(tmpNewDate);
 
 }
     
