@@ -48,7 +48,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     	
     	
     	
-        editAppName(getAppSpecific("Doing Business As (DBA) Name"),newLicId);
+        editAppName(getAppSpecific("Application Name"),newLicId);
         
     }
    
@@ -64,7 +64,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
                 newExpDate = "06/30/"+thisYear.toString();
                 
                 logDebug(thisyear + "<----------------------" + newExpDate);
-        }
+       
         
         if (newLicId) {
             thisLic = new licenseObject(newLicIdString,newLicId);
@@ -72,7 +72,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
             thisLic.setStatus("Active");
             }
     
-           
+                
 //*****************************************************************************************************    
 
     if (newLicId) {
@@ -88,3 +88,4 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         }
     logDebug("Business License Issued" + tmpNewDate);
 	}
+}
