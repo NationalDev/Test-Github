@@ -47,7 +47,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
 
         editAppName(getAppSpecific("Doing Business As (DBA) Name"),newLicId);
-    }
+   
 //*****************************************************************************************************
     
   	
@@ -66,6 +66,8 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
 //*****************************************************************************************************    
     
     tmpNewDate = dateAddMonths(expDate, monthsToInitialExpire);
+    }
+    
     
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
