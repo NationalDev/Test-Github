@@ -39,18 +39,18 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         
         
         
-        var b1ExpResult = aa.expiration.getLicensesByCapID(newLicId); 
-    	var b1Exp = b1ExpResult.getOutput(); 
-    	var expDate = b1Exp.getExpDateString();
-    	var expStat = b1Exp.getExpStatus();
-    	
-    	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
-    	
-    	
-    	
-        editAppName(getAppSpecific("Application Name"),newLicId);
+//        var b1ExpResult = aa.expiration.getLicensesByCapID(newLicId); 
+//    	var b1Exp = b1ExpResult.getOutput(); 
+//    	var expDate = b1Exp.getExpDateString();
+//    	var expStat = b1Exp.getExpStatus();
+//    	
+//    	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
+//    	
+//    	
+//    	
+//        editAppName(getAppSpecific("Application Name"),newLicId);
         
-    }
+    
    
 //*****************************************************************************************************
     
@@ -89,3 +89,4 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     logDebug("Business License Issued" + tmpNewDate);
 	}
 }
+    
