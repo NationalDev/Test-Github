@@ -44,7 +44,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     	var expDate = b1Exp.getExpDateString();
     	var expStat = b1Exp.getExpStatus();
     	
-    	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
+    	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + dateFormatted(expDate)); 
 
         editAppName(getAppSpecific("Doing Business As (DBA) Name"),newLicId);
    
