@@ -35,7 +35,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         copyContacts(capId,newLicId);
         editAppName(capName,newLicId);       
         updateAppStatus("Active","Originally Issued",newLicId);
-        editAppSpecific("Expiration Date",dateAddMonths("06/30/YYYY",12));
+//        editAppSpecific("Expiration Date",dateAddMonths("06/30/YYYY",12));
         
         
         
@@ -60,7 +60,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
 //			b1Exp.setExpStatus("Active"); 
 //
 			//To save the above change, you must use the following call to commit your updates
-			aa.expiration.editB1Expiration(b1Exp.getB1Expiration()); 
+//			aa.expiration.editB1Expiration(b1Exp.getB1Expiration()); 
 //    
     
 //*****************************************************************************************************    
