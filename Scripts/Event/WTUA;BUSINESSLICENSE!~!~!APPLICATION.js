@@ -84,3 +84,4 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         }
     logDebug("Business License Issued" + tmpNewDate);
 	}
+}
