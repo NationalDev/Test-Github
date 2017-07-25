@@ -54,34 +54,32 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
    
 //*****************************************************************************************************
     
-  	
-//	if (expStat.equalsIgnoreCase("About to Expire")) 
-//	{ 
-//		if (expDate.equals("2017-12-31")) 
-//		{ 
-//			logDebug("Expiration Status: " + expStat); 
-//			/* the following status change doesn't appear to get saved or committed*/ 
-//			b1Exp.setExpStatus("Active"); 
-//
-			//To save the above change, you must use the following call to commit your updates
-//			aa.expiration.editB1Expiration(b1Exp.getB1Expiration()); 
-//    
+        tmpNewDate = new Date();
+
+        if (appTypeArray[1] == "Mechanical" && appTypeArray[2] == "Contractor Registration") {
+
+            thisYear = parseInt(tmpNewDate.getYear().toString())+1900;
+
+                thisYear + 1;
+                newExpDate = "06/30/"+thisYear.toString();
+           
+                }
     
 //*****************************************************************************************************    
     
-    tmpNewDate = dateAddMonths(expDate, monthsToInitialExpire);
-    }
+    
+   
     
     
-//    if (newLicId) {
-//        thisLic = new licenseObject(newLicIdString,newLicId);
-//        thisLic.setExpiration(tmpNewDate);
+    if (newLicId) {
+        thisLic = new licenseObject(newLicIdString,newLicId);       
+        thisLic.setExpiration(newExpDate);
 
-//}
+}
     
     if (newLicId) {
         thisLic = new licenseObject(newLicIdString,newLicId);
- //       thisLic.setExpiration(expdate);
+        thisLic.setExpiration(newExpDate);
         thisLic.setStatus("Active");
         }
 
