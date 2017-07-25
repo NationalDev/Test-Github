@@ -45,10 +45,8 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     	var expStat = b1Exp.getExpStatus();
     	
     	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
-
     	
     	tmpNewDate = dateAddMonths(expDate, monthsToInitialExpire);
-    	
     	
         editAppName(getAppSpecific("Doing Business As (DBA) Name"),newLicId);
    
@@ -65,23 +63,14 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
            
                 }
     
+        if (newLicId) {
+            thisLic = new licenseObject(newLicIdString,newLicId);
+            thisLic.setExpiration(dateAdd(newExpDate,0));
+            thisLic.setStatus("Active");
+            }
+    }
+        
 //*****************************************************************************************************    
-    
-       
-   
-    
-    
-    if (newLicId) {
-        thisLic = new licenseObject(newLicIdString,newLicId);       
-        thisLic.setExpiration(newExpDate);
-
-}
-    
-    if (newLicId) {
-        thisLic = new licenseObject(newLicIdString,newLicId);
-        thisLic.setExpiration(newExpDate);
-        thisLic.setStatus("Active");
-        }
 
     if (newLicId) {
         changeCapContactTypes("Applicant","License Holder", newLicId);
@@ -96,4 +85,3 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         }
     logDebug("Business License Issued" + tmpNewDate);
 	}
-}
