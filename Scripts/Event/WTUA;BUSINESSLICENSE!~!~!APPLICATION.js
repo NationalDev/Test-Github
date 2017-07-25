@@ -35,10 +35,13 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         copyContacts(capId,newLicId);
         editAppName(capName,newLicId);       
         updateAppStatus("Active","Originally Issued",newLicId);
+        editAppSpecific("Expiration Date",dateAddMonths("06/30/YYYY",12));
+        
+        
         
         var b1ExpResult = aa.expiration.getLicensesByCapID(capId); 
     	var b1Exp = b1ExpResult.getOutput(); 
-    	var expDate = b1Exp.getExpDateString(capId);
+    	var expDate = b1Exp.getExpDateString();
     	var expStat = b1Exp.getExpStatus();
     	
     	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
@@ -56,8 +59,8 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
 //			/* the following status change doesn't appear to get saved or committed*/ 
 //			b1Exp.setExpStatus("Active"); 
 //
-//			//To save the above change, you must use the following call to commit your updates
-//			aa.expiration.editB1Expiration(b1Exp.getB1Expiration()); 
+			//To save the above change, you must use the following call to commit your updates
+			aa.expiration.editB1Expiration(b1Exp.getB1Expiration()); 
 //    
     
 //*****************************************************************************************************    
