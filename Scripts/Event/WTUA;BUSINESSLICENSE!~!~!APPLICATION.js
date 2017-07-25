@@ -49,6 +49,8 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     	
     	
         editAppName(getAppSpecific("Doing Business As (DBA) Name"),newLicId);
+        
+    }
    
 //*****************************************************************************************************
     
@@ -86,4 +88,3 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         }
     logDebug("Business License Issued" + tmpNewDate);
 	}
-}
