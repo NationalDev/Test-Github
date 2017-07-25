@@ -60,15 +60,17 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
 
                 thisYear += 1;
                 newExpDate = "06/30/"+thisYear.toString();
-                logDebug(thisyear + "<----------------------");
-                    
+                
+                logDebug(thisyear + "<----------------------" + newExpDate);
+        }
+        
         if (newLicId) {
             thisLic = new licenseObject(newLicIdString,newLicId);
             thisLic.setExpiration(dateAdd(newExpDate,0));
             thisLic.setStatus("Active");
             }
     
-        }    
+           
 //*****************************************************************************************************    
 
     if (newLicId) {
