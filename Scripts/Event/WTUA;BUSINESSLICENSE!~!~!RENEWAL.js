@@ -32,7 +32,7 @@ if (wfTask == "License Issuance" && wfStatus == "Renewed") {
         copyASITables(capId,newLicId);
         copyLicensedProf(newLicId,capId);
         copyASIFields(capId,newLicId);
-    }
+    
     var b1ExpResult = aa.expiration.getLicensesByCapID(newLicId); 
 	var b1Exp = b1ExpResult.getOutput(); 
 	var expDate = b1Exp.getExpDateString();
