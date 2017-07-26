@@ -15,7 +15,6 @@ if (wfStatus == "Request for Corrections") {
 
 
 if (wfTask == "License Issuance" && wfStatus == "Issued") {
-//->branch("LIC Issue Business License");
     newLic = null;
     newLicId = null;
     newLicIdString = null;
@@ -24,8 +23,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     // create the license record;
     if (newLicId) {
         
-    	newLicIdString = newLicId.getCustomID();
-        
+    	newLicIdString = newLicId.getCustomID();    
         copyAppSpecific(capId);
         copyAddresses(capId,newLicId);
         copyASITables(capId,newLicId);
@@ -33,7 +31,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         copyContacts(capId,newLicId);
         editAppName(capName,newLicId);       
         updateAppStatus("Active","Originally Issued",newLicId);
-//      editAppSpecific("Expiration Date",dateAddMonths("06/30/YYYY",12));
+
         
         
         
@@ -44,36 +42,22 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     	
     	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
     	
-//    	
-//    	
-//        editAppName(getAppSpecific("Application Name"),newLicId);
-        
-    
-   
-//*****************************************************************************************************
+
     
         tmpNewDate = new Date();
 
         thisYear = parseInt(tmpNewDate.getYear().toString())+1900;
-
-           
-                thisYear += 1;
+ 
+        thisYear += 1;
                 
-          newExpDate = "06/30/"+thisYear.toString();
-                
-          logDebug(thisYear + "<----------------------" + newExpDate);
-       
-        
+          newExpDate = "06/30/"+thisYear.toString();                
+          
         if (newLicId) {
             thisLic = new licenseObject(newLicIdString,newLicId);
             thisLic.setExpiration(newExpDate);
             thisLic.setStatus("Active");
             }
-    
-        logDebug(thisYear + "<----------------------" + newExpDate);
                 
-//*****************************************************************************************************    
-
     if (newLicId) {
         changeCapContactTypes("Applicant","License Holder", newLicId);
         }
