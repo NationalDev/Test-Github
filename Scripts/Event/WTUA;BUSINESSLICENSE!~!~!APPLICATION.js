@@ -55,7 +55,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         logDebug("Cycle <===========================" + Cycle);         
         logDebug("thisYear <===========================" + thisYear);         
         
-       var newExpDate = (Cycle + thisYear);                
+       var newExpDate = (Cycle + "/"+thisYear);                
           
        logDebug("newExpDate <===========================" + newExpDate);    
        
