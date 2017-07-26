@@ -37,13 +37,13 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         
         
         
-//        var b1ExpResult = aa.expiration.getLicensesByCapID(newLicId); 
-//    	var b1Exp = b1ExpResult.getOutput(); 
-//    	var expDate = b1Exp.getExpDateString();
-//    	var expStat = b1Exp.getExpStatus();
-//    	
-//    	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
-//    	
+        var b1ExpResult = aa.expiration.getLicensesByCapID(newLicId); 
+    	var b1Exp = b1ExpResult.getOutput(); 
+    	var expDate = b1Exp.getExpDateString();
+    	var expStat = b1Exp.getExpStatus();
+    	
+    	logDebug("Attempting to use 'getExpStatus()' for " + capId + " expirying on this date: " + expDate); 
+    	
 //    	
 //    	
 //        editAppName(getAppSpecific("Application Name"),newLicId);
@@ -52,11 +52,11 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
    
 //*****************************************************************************************************
     
-        tmpNewDate = new Date();
+//        tmpNewDate = new Date();
 
         
 
-            thisYear = parseInt(tmpNewDate.getYear().toString())+1900;
+            thisYear = parseInt(expDate.getYear().toString())+1900;
 
                 thisYear += 1;
                 newExpDate = "06/30/"+thisYear.toString();
