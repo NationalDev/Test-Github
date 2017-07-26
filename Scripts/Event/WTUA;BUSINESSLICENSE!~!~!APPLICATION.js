@@ -56,7 +56,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         
         
         
-          newExpDate = "06/30/"+thisYear.toString();                
+          newExpDate = Cycle+thisYear.toString();                
           
         if (newLicId) {
             thisLic = new licenseObject(newLicIdString,newLicId);
