@@ -54,14 +54,14 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     
         tmpNewDate = new Date();
 
-//        thisYear = parseInt(dateFormatted(expDate).getYear().toString())+1900;
+        thisYear = parseInt(dateFormatted(tmpNewDate).getYear().toString())+1900;
 
-            thisYear = expDate.getFullYear()+1900;
-
+           
                 thisYear += 1;
-                newExpDate = "06/30/"+thisYear.toString();
                 
-                logDebug(thisyear + "<----------------------" + newExpDate);
+          newExpDate = "06/30/"+thisYear.toString();
+                
+          logDebug(thisyear + "<----------------------" + newExpDate);
        
         
         if (newLicId) {
@@ -70,6 +70,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
             thisLic.setStatus("Active");
             }
     
+        logDebug(thisyear + "<----------------------" + newExpDate);
                 
 //*****************************************************************************************************    
 
