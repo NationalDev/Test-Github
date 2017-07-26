@@ -49,7 +49,13 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         thisYear = parseInt(tmpNewDate.getYear().toString())+1900;
  
         thisYear += 1;
-                
+//**************************************************************************
+        Cycle= new getAppSpecific('Billing Cycle');
+        
+        logDebug("Cycle <======================" + Cycle);  
+        
+        
+        
           newExpDate = "06/30/"+thisYear.toString();                
           
         if (newLicId) {
