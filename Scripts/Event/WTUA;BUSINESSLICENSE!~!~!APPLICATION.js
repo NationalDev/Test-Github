@@ -55,7 +55,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
  //       logDebug("Cycle <===========================" + Cycle);         
         
         
-          newExpDate = getAppSpecific("Billing Cycle")+thisYear.toString();                
+          newExpDate = getAppSpecific("Billing Cycle")+thisYear;                
           
         if (newLicId) {
             thisLic = new licenseObject(newLicIdString,newLicId);
