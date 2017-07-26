@@ -67,4 +67,3 @@ if (newLicId) {
     copyASITables(capId,newLicId);
     }
 logDebug("Business License Renewed" + tmpNewDate);
-}
