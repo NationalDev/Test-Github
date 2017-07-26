@@ -55,7 +55,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         logDebug("Cycle <===========================" + Cycle);         
         
         
-          newExpDate = Cycle + thisYear;                
+        newExpDate = Cycle.concat(" ",thisYear);                
           
         if (newLicId) {
             thisLic = new licenseObject(newLicIdString,newLicId);
