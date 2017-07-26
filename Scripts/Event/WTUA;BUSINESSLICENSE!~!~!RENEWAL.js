@@ -7,7 +7,8 @@
 //																										   /
 //*********************************************************************************************************/
 //WTUA:BUSINESSLICENSE/*/*/RENEWAL script
-
+var showDebug = true;
+var showMessage = true;
 
 if (wfStatus == "Request for Corrections") {
         sendExternalReviewNotification();   
@@ -32,7 +33,8 @@ if (wfTask == "License Issuance" && wfStatus == "Renewed") {
         copyASITables(capId,newLicId);
         copyLicensedProf(newLicId,capId);
         copyASIFields(capId,newLicId);
-    
+        copyASITables(capId,newLicId);
+        
     var b1ExpResult = aa.expiration.getLicensesByCapID(newLicId); 
 	var b1Exp = b1ExpResult.getOutput(); 
 	var expDate = b1Exp.getExpDateString();
@@ -55,16 +57,10 @@ if (wfTask == "License Issuance" && wfStatus == "Renewed") {
         thisLic.setStatus("Active");
         }
             
-if (newLicId) {
-    changeCapContactTypes("Applicant","License Holder", newLicId);
-    }
+
 
 if (newLicId) {
-    copyOwner(capId, newLicId);
-    }
-
-if (newLicId) {
-    copyASITables(capId,newLicId);
+    
     }
 logDebug("Business License Renewed" + tmpNewDate);
 }}
