@@ -56,7 +56,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
 
 //        thisYear = parseInt(dateFormatted(expDate).getYear().toString())+1900;
 
-            thisYear = parseInt(dateFormatted(expDate).getYear())+1900;
+            thisYear = expDate.getYear()+1900;
 
                 thisYear += 1;
                 newExpDate = "06/30/"+thisYear.toString();
