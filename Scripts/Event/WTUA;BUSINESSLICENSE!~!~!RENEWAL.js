@@ -68,4 +68,3 @@ if (newLicId) {
     }
 logDebug("Business License Renewed" + tmpNewDate);
 }
-}
