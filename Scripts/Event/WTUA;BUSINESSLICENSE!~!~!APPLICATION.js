@@ -70,7 +70,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
             thisLic.setStatus("Active");
             }
     
-        logDebug(thisyear + "<----------------------" + newExpDate);
+        logDebug(thisYear + "<----------------------" + newExpDate);
                 
 //*****************************************************************************************************    
 
