@@ -19,9 +19,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     newLic = null;
     newLicId = null;
     newLicIdString = null;
-    
-    monthsToInitialExpire = 12;
-    
+       
     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
     // create the license record;
     if (newLicId) {
@@ -56,7 +54,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     
         tmpNewDate = new Date();
 
-        if (appTypeArray[1] == "Mechanical" && appTypeArray[2] == "Contractor Registration") {
+        
 
             thisYear = parseInt(tmpNewDate.getYear().toString())+1900;
 
@@ -88,5 +86,5 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         }
     logDebug("Business License Issued" + tmpNewDate);
 	}
-    }}
+    }
     
