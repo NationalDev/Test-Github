@@ -1,9 +1,9 @@
 //*********************************************************************************************************/
-//	WTUA;BUSINESSLICENSE!~!~!APPLICATION.js																	       /
+//	WTUA;BUSINESSLICENSE!~!~!APPLICATION.js															       /	
 //																			Iman Sallam @ City of Detroit  /
 //		Deploy with the script code and script title below (all caps)									   /
 //																								           /
-//					WTUA:BUSINESSLICENSE/*/*/APPLICATION														   / 							
+//					WTUA:BUSINESSLICENSE/*/*/APPLICATION														 							
 //																										   /
 //*********************************************************************************************************/
 //WTUA:BUSINESSLICENSE/*/*/APPLICATION script
@@ -33,7 +33,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
         copyContacts(capId,newLicId);
         editAppName(capName,newLicId);       
         updateAppStatus("Active","Originally Issued",newLicId);
-//        editAppSpecific("Expiration Date",dateAddMonths("06/30/YYYY",12));
+//      editAppSpecific("Expiration Date",dateAddMonths("06/30/YYYY",12));
         
         
         
