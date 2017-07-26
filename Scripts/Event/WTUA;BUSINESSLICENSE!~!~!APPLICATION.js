@@ -54,7 +54,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     
         tmpNewDate = new Date();
 
-        thisYear = parseInt(dateFormatted(tmpNewDate).getYear().toString())+1900;
+        thisYear = parseInt(tmpNewDate.getYear().toString())+1900;
 
            
                 thisYear += 1;
