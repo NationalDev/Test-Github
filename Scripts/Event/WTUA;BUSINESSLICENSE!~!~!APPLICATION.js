@@ -50,9 +50,9 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
  
         thisYear += 1;
 //**************************************************************************
-        Cycle= new getAppSpecific('Billing Cycle');
+        Cycle= new getAppSpecific("Billing Cycle");
         
-        logDebug("Cycle <======================" + Cycle);  
+        logDebug("Cycle <===========================" + Cycle);  
         
         
         
