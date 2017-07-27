@@ -1,10 +1,10 @@
 //*********************************************************************************************************/
-//	ASA;LICENSES!~!~!~.js																	       /
+//	ASA;BUSINESSLICENSE!~!~!~.js																	               /
 //																			Iman Sallam @ City of Detroit  /
 //		Deploy with the script code and script title below (all caps)									   /
 //																								           /
-//					ASA:LICENSES/*/*/*													   / 							
-//																	7/27/2017									   /
+//					ASA:BUSINESSLICENSE/*/*/*													                   / 							
+//																	7/27/2017							   /
 //*********************************************************************************************************/
 
 //
@@ -12,22 +12,26 @@
 //
 
 //branch("EMSE:SetContactRelationshipToContactType");
-logDebug("branch(EMSE:SetContactRelationshipToContactType)")
-if (matches(currentUserID,"ADMIN")) {
+//logDebug("branch(EMSE:SetContactRelationshipToContactType)")
+//if (matches(currentUserID,"ADMIN")) {
     showDebug = true;
     showMessage= true;
-}
-
+//}
+if capID <> null {
 var parentRecordID = getParent();
 
-copyAddresses(capId,newLicId);
+copyAddresses(capId,parentRecordID);
 
-logDebug("Address Line 1 = " + Address Line 1 ); 
-logDebug("Address Line 2 = " + Address Line 2 ); 
+logDebug("Record ID = " + parentRecordID ); 
+logDebug("Street No = " + 'Street#' ); 
+logDebug("Street Name = " + 'Street Name' ); 
+logDebug("Street Type = " + 'Street Type' ); 
+logDebug("Address Line 1 = " + 'Address Line 1' ); 
+logDebug("Address Line 2 = " + 'Address Line 2' ); 
 logDebug("City = " + City ); 
 logDebug("Zip = " + Zip ); 
 
-
+}
 
 
 
