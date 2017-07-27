@@ -52,7 +52,7 @@ if (wfTask == "License Issuance" && wfStatus == "Renewed") {
                   
    
     if (newLicId) {
-        thisLic = new licenseObject(newLicIdString,newLicId);
+//        thisLic = new licenseObject(newLicIdString,newLicId);
         thisLic.setExpiration(newExpDate);
         thisLic.setStatus("Active");
         }
