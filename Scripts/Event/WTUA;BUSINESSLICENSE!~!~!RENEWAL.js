@@ -15,7 +15,7 @@ if (wfStatus == "Request for Corrections") {
 }
 
 
-if (wfTask == "License Issuance" && wfStatus == "Renewed") {
+if (wfTask == "Renewal Review" && wfStatus == "Renewed") {
     newLic = null;
     newLicId = null;
     newLicIdString = null;
@@ -52,13 +52,10 @@ if (wfTask == "License Issuance" && wfStatus == "Renewed") {
                   
    
     if (newLicId) {
-//        thisLic = new licenseObject(newLicIdString,newLicId);
         thisLic.setExpiration(newExpDate);
         thisLic.setStatus("Active");
         }
             
-
-
 if (newLicId) {
     
     }
