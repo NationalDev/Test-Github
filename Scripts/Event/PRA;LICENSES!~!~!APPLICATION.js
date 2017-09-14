@@ -11,6 +11,17 @@
 var showDebug = true;
 var showMessage = true;
 
+			if (debug.indexOf("**ERROR") > 0)
+			{
+			aa.env.setValue("ScriptReturnCode", "1");
+			aa.env.setValue("ScriptReturnMessage", debug);
+			}
+			else
+			{
+			aa.env.setValue("ScriptReturnCode", "0");
+			if (showMessage) aa.env.setValue("ScriptReturnMessage", message);
+			if (showDebug)     aa.env.setValue("ScriptReturnMessage", debug);
+			}
 
 //if (isTaskStatus == "Request for Corrections") {
 //        sendExternalReviewNotification();   
@@ -317,9 +328,9 @@ if (isTaskStatus("License Issuance","issued") && balanceDue <= 0) {
               isNewLic = true;
         }
       
-//    if (tmpLicObj.valid && licIDString) {
-//        associatedRefContactWithRefLicProf(licObj.refLicModel.getLicSeqNbr(), aa.getServiceProviderCode(),currentUserID);
-//        }
+    if (tmpLicObj.valid && licIDString) {
+        associatedRefContactWithRefLicProf(licObj.refLicModel.getLicSeqNbr(), aa.getServiceProviderCode(),currentUserID);
+        }
 
     var mycap = aa.cap.getCap(capId).getOutput();
     if (tmpLicObj.valid && mycap.getCapModel().getCreatedByACA() == 'Y') {
@@ -519,20 +530,8 @@ else{		var rParams = aa.util.newHashMap();
 }
 
 }
-	/*------------------------------------------------------------------------------------------------------/
-	| <===========END=Main=Loop================>
-	/-----------------------------------------------------------------------------------------------------*/
+	
 
-	if (debug.indexOf("**ERROR") > 0)
-	    {
-	    aa.env.setValue("ScriptReturnCode", "1");
-	    aa.env.setValue("ScriptReturnMessage", debug);
-	    }
-	else
-	    {
-	    aa.env.setValue("ScriptReturnCode", "0");
-	    if (showMessage) aa.env.setValue("ScriptReturnMessage", message);
-	    if (showDebug)     aa.env.setValue("ScriptReturnMessage", debug);
-	    }
+	
 	}
 
