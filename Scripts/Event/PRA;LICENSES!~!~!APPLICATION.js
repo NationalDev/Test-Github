@@ -4,12 +4,24 @@
 //		Deploy with the script code and script title below (all caps)									   /
 //																								           /
 //					PRA:LICENSES/*/*/APPLICATION														   / 							
-//			September 6th, 2017																							   /
+//			September 7th, 2017			Revision 2.0
+//			September 11th, 2017			Revision 3.0
 //*********************************************************************************************************/
 
 var showDebug = true;
-var showMessage = false;
+var showMessage = true;
 
+			if (debug.indexOf("**ERROR") > 0)
+			{
+			aa.env.setValue("ScriptReturnCode", "1");
+			aa.env.setValue("ScriptReturnMessage", debug);
+			}
+			else
+			{
+			aa.env.setValue("ScriptReturnCode", "0");
+			if (showMessage) aa.env.setValue("ScriptReturnMessage", message);
+			if (showDebug)     aa.env.setValue("ScriptReturnMessage", debug);
+			}
 
 //if (isTaskStatus == "Request for Corrections") {
 //        sendExternalReviewNotification();   
@@ -44,18 +56,16 @@ var showMessage = false;
     
         logDebug("Balance Due = " + balanceDue + "Task Active = "  + isTaskActive("License Issuance") + " Status =" + taskStatus("License Issuance")); 
     				
+        
 
-        var feeArr = loadFees();
-        var newFeeRes = aa.util.deepClone(feeArr);    
-        logDebug("Clone Result: " + newFeeRes.getSuccess());
-        var newFeeArr = newFeeRes.getOutput();
-        for (i in newFeeArr) {
-            logDebug("fees  Array = " +newFeeArr.getFeeCod());
-            newFeeArr[i].setCapID(newLicId);
-      
-    }
-
-    }
+//        var feeArr = loadFees();
+//        var newFeeRes = aa.util.deepClone(feeArr);    
+//        logDebug("Clone Result: " + newFeeRes.getSuccess());
+//        var newFeeArr = newFeeRes.getOutput();
+//        for (i in newFeeArr) {
+//            logDebug("fees  Array = " +newFeeArr.getFeeCod());
+//            newFeeArr[i].setCapID(newLicId);
+//             }
         
       //**************************************************************************************    
     tmpNewDate = new Date();
@@ -105,7 +115,7 @@ var showMessage = false;
     /**
      * Check condition for Boiler!Contractor Registration
      */
-    if (appTypeArray[1] == "Boiler" && appTypeArray[2] == "Contractor Registration") {
+    if (appTypeArray[1] == "Boiler" && appTypeArray[2] == "ContractorRegistration") {
         thisYear = parseInt(tmpNewDate.getYear().toString()) + 1900;
             thisYear += 3;
             newExpDate = "12/31/" + thisYear.toString();
@@ -141,7 +151,7 @@ var showMessage = false;
         	thisLic.setStatus("Active");
         }
     }
-    /**
+      /**
      * Check Condition Building!ContractorRegistration
      */ 
     if (appTypeArray[1] == "Building" && appTypeArray[2] == "ContractorRegistration") {
@@ -152,7 +162,9 @@ var showMessage = false;
        		thisLic.setExpiration(dateAdd(newExpDate,0));
        		thisLic.setStatus("Active");
        	}
-    } else if (appTypeArray[1] == "Building" && appTypeArray[2] == "Sign-AwingContractor") {
+    
+    } 
+    else if (appTypeArray[1] == "Building" && appTypeArray[2] == "Sign-AwingContractor") {
 	    thisYear = parseInt(tmpNewDate.getYear().toString()) + 1900;
 	    newExpDate = "12/31/" + thisYear.toString();
 	    if (newLicId) {
@@ -160,7 +172,8 @@ var showMessage = false;
 	    	thisLic.setExpiration(dateAdd(newExpDate,0));
 	    	thisLic.setStatus("Active");
 	    }
-    } else if (appTypeArray[1] == "Electrical" && appTypeArray[2] == "Contractor") {
+    } 
+    else if (appTypeArray[1] == "Electrical" && appTypeArray[2] == "Contractor") {
     	thisYear = parseInt(tmpNewDate.getYear().toString()) + 1900;
     	newExpDate = "12/31/" + thisYear.toString();
     	if (newLicId) {
@@ -168,7 +181,8 @@ var showMessage = false;
     		thisLic.setExpiration(dateAdd(newExpDate,0));
     		thisLic.setStatus("Active");
     	}
-     } else if (appTypeArray[1] == "Electrical" && appTypeArray[2] == "ContractorRegistration") {
+     } 
+    else if (appTypeArray[1] == "Electrical" && appTypeArray[2] == "ContractorRegistration") {
     	 thisYear = parseInt(tmpNewDate.getYear().toString()) + 1900;
     	 newExpDate = "12/31/" + thisYear.toString();
     	 if (newLicId) {
@@ -176,7 +190,8 @@ var showMessage = false;
     		 thisLic.setExpiration(dateAdd(newExpDate,0));
     		 thisLic.setStatus("Active");
     	 }
-	 } else if (appTypeArray[1] == "Electrical" && appTypeArray[2] == "Masters-Journeyman") {
+	 } 
+    else if (appTypeArray[1] == "Electrical" && appTypeArray[2] == "Masters-Journeyman") {
 		 thisYear = parseInt(tmpNewDate.getYear().toString()) + 1900;
 		 newExpDate = "12/31/" + thisYear.toString();
 		 if (newLicId) {
@@ -184,7 +199,8 @@ var showMessage = false;
 			 thisLic.setExpiration(dateAdd(newExpDate,0));
 			 thisLic.setStatus("Active");
 		 }	      	
-	 } else if (appTypeArray[1] == "Mechanical" && appTypeArray[2] == "Elevator") {
+	 } 
+    else if (appTypeArray[1] == "Mechanical" && appTypeArray[2] == "Elevator") {
 		 thisYear = parseInt(tmpNewDate.getYear().toString()) + 1900;
 		 newExpDate = "12/31/" + thisYear.toString();
 		 if (newLicId) {
@@ -192,41 +208,28 @@ var showMessage = false;
 			 thisLic.setExpiration(dateAdd(newExpDate,0));
 			 thisLic.setStatus("Active");
 		 }	      	
-	 } else if  (newLicId){
-		 	
-		 	 monthsToInitialExpire = 12;
-		     tmpNewDate = dateAddMonths(null, monthsToInitialExpire);
-			 
+	 } 
+    
+    else if (appTypeArray[1] == "Building" && appTypeArray[2] == "WreckingContractor") {
+		 thisYear = parseInt(tmpNewDate.getYear().toString()) + 1900;
+		 newExpDate = "12/31/" + thisYear.toString();
+		 if (newLicId) {
 			 thisLic = new licenseObject(newLicIdString,newLicId);
 			 thisLic.setExpiration(dateAdd(newExpDate,0));
 			 thisLic.setStatus("Active");
-		 }	else {	
-			 
-		 }
-   }
-					
-//************************************ REPORT **********************************
-			
-    	    	      	var rParams = aa.util.newHashMap();
-    	    	      	
-    	   	            addParameter(rParams,"Record_ID","capId");
-    	  	            addParameter(rParams,"Module","Licenses");
-    	    	        addParameter(rParams,"logo","Xtra4");
-    	    	        
-    	    	        logDebug("Parameters: " + rParams);
-     	    	        
-  //   	    	        function runReport4EmailOrPrint(itemCap,reportName,conObj,rParams,eParams,emailTemplate,module) {
-	    	        	//If email address available for contact type then email the report, otherwise pop up the report on the screen
-    	    	         	    	        
-    	    	        runReport4EmailOrPrint(capId,"License",null,rParams,null,null,"Licenses");
-
-    	
-
+		 }	      	
+	 } 
+    else  {
+		       
+	}
+	
+	}
+    	        
 
 //From Here ************************ Licensed Professional **************************************
 
 
-if (isTaskStatus("License Issuance","issued")) {
+if (isTaskStatus("License Issuance","issued") && balanceDue <= 0) {
   
   
   //->branch("EMSE:LicProfLookup");
@@ -316,7 +319,7 @@ if (isTaskStatus("License Issuance","issued")) {
           	vNewLic.setLicState(LICENSESTATE);
           	vNewLic.setStateLicense(stateLicense);
          
-          aa.licenseScript.createRefLicenseProf(vNewLic);
+          aa.licenseScript.createRefLicProf(vNewLic);
       }   
           var tmpLicObj = licenseProfObject(stateLicense,LICENSETYPE);
          
@@ -325,9 +328,9 @@ if (isTaskStatus("License Issuance","issued")) {
               isNewLic = true;
         }
       
-//    if (tmpLicObj.valid && licIDString) {
-//        associatedRefContactWithRefLicProf(licObj.refLicModel.getLicSeqNbr(), aa.getServiceProviderCode(),currentUserID);
-//        }
+    if (tmpLicObj.valid && licIDString) {
+        associatedRefContactWithRefLicProf(licObj.refLicModel.getLicSeqNbr(), aa.getServiceProviderCode(),currentUserID);
+        }
 
     var mycap = aa.cap.getCap(capId).getOutput();
     if (tmpLicObj.valid && mycap.getCapModel().getCreatedByACA() == 'Y') {
@@ -380,62 +383,155 @@ if (isTaskStatus("License Issuance","issued")) {
         if (getAppSpecific("Doing Business As (DBA) Name")) {
             licObj.refLicModel.setBusinessName(getAppSpecific("Doing Business As (DBA) Name") );
         }
-
-        if (getAppSpecific("State License Number")) {
-            licObj.refLicModel.setBusinessLicense(getAppSpecific("State License Number") );
-        }
-        
-        
-        
-        if (getAppSpecific("State Expiration Date")) {
-            var expDate = getAppSpecific("State Expiration Date");
-            licObj.refLicModel.setLicenseExpirationDate(aa.date.parseDate(expDate));
-        }
-
-        licObj.refLicModel.setStateLicense(licCap.getCapModel().getAltID());
-        logDebug("BaseFields setBusinessLicense = " +  licCap.getCapModel().getAltID());
-
-
-//----->branch("EMSE:LicProfLookup:UpdateLP:ApplicationStatus");
-        logDebug("Executing EMSE:LicProfLookup:UpdateLP:ApplicationStatus");
-        licObj.refLicModel.setBusinessName2(licCapStatus);
-        logDebug("Lic Cap Status: " + licCapStatus);
-        if (licObj.updateRecord()) {
-            logDebug("LP Updated Successfully");
-        }
-        else {
-            logDebug("LP Update Failed");
-            logDebug("licObj is valid? " + licObj.valid);
-            var res = aa.licenseScript.editRefLicenseProf(licObj.refLicModel);
-            var succ = res.getSuccess();
-            logDebug("editRefLicenseProf() " + succ);
-
-            createRefLicProf(stateLicense,LICENSETYPE,"License Holder");
-            var newLicProf = getRefLicenseProf(stateLicense);
-            newLicProf.setLicenseIssueDate(licCap.getFileDate());
-            newLicProf.setLicenseBoard(LICENSETYPE);
-            newLicProf.setLicenseExpirationDate(aa.date.parseDate(expDate));
-            newLicProf.setBusinessLicense(licCap.getCapModel().getAltID());
-            newLicProf.setBusinessName2(licCapStatus);
-            
-            LPUpdateResult = aa.licenseScript.editRefLicenseProf(newLicProf);
-            logDebug("LP Update Result = " + LPUpdateResult.getSuccess());
-        }
   }
-//   
-//    else {
-//        logDebug("LP Not found to update");
-//        //createRefLicProfFromLicProf();
-//    
-//    }
+
+
+	
+  
+//************************************ REPORT SELECTION **********************************
+
+//function runReport4EmailOrPrint(itemCap,reportName,conObj,rParams,eParams,emailTemplate,module) {
+//If email address available for contact type then email the report, otherwise pop up the report on the screen  
+  
+//*********************************** STATIONARY ENGINEER  
+  
+  	
+  
+  	logDebug("License Type: " + LICENSETYPE);
+  	
+if (LICENSETYPE == "1st Class Station Eng") {
+  	     
+  		var rParams = aa.util.newHashMap();
+  	     	
+  			addParameter(rParams,"Record_ID","capId");
+  			addParameter(rParams,"TASK","Licenses Issuance");
+  			addParameter(rParams,"ITEM NAME","LIC LICENSED PROFESSIONAL");
+  			
+  			logDebug("Parameters: " + rParams);
+
+    	        
+  			runReport4EmailOrPrint(capId,"Stationary",null,rParams,null,null,"Licenses");
+ 
+  			}
+  	
+else if (LICENSETYPE == "2nd Class Station Eng")  {
+	     
+		var rParams = aa.util.newHashMap();
+			addParameter(rParams,"Record_ID","capId");
+  			addParameter(rParams,"TASK","Licenses Issuance");
+  			addParameter(rParams,"ITEM NAME","LIC LICENSED PROFESSIONAL");
+  			
+  			logDebug("Parameters: " + rParams);
+
+				        
+			runReport4EmailOrPrint(capId,"Stationary",null,rParams,null,null,"Licenses");
+
+			} 
+
+else if (LICENSETYPE == "3rd Class Station Eng") {
+    
+	var rParams = aa.util.newHashMap();
+			addParameter(rParams,"Record_ID","capId");
+			addParameter(rParams,"TASK","Licenses Issuance");
+			addParameter(rParams,"ITEM NAME","LIC LICENSED PROFESSIONAL");
+			
+			logDebug("Parameters: " + rParams);
+
+
+        
+		runReport4EmailOrPrint(capId,"Stationary",null,rParams,null,null,"Licenses");
+
+		} 
 //
+//
+//
+////*********************************** BOILER 
 // 
-//        var checkLicProf = getRefLicenseProf(stateLicense);
-//        	if (newLicProf.valid){
-//    aa.print("newLicProf is a " + newLicProf.getClass());
-//    for (x in newLicProf) if (typeof(newLicProf[x]) == "function") aa.print("  " + x);
-//    for (x in newLicProf) if (typeof(newLicProf[x]) != "function") aa.print("  " + x + " = " + newLicProf[x]);
+else if (LICENSETYPE == "Boiler Op HP") {
+  	
+  		
+  		var rParams = aa.util.newHashMap();
+			
+  			addParameter(rParams,"Record_ID","capId");
+  			addParameter(rParams,"ITEM NAME","LIC LICENSED PROFESSIONAL");
+  			addParameter(rParams,"TASK","Licenses Issuance");
+
+  			logDebug("Parameters: " + rParams);
+	    	        
+  			runReport4EmailOrPrint(capId,"Boiler",null,rParams,null,null,"Licenses");
+
+  	}
 //
-//        	}
-      
+else if (LICENSETYPE == "Boiler Op LP") {
+  	
+		
+		var rParams = aa.util.newHashMap();
+			addParameter(rParams,"Record_ID","capId");
+  			addParameter(rParams,"ITEM NAME","LIC LICENSED PROFESSIONAL");
+  			addParameter(rParams,"TASK","Licenses Issuance");
+
+  			logDebug("Parameters: " + rParams);
+		    	        
+			runReport4EmailOrPrint(capId,"Boiler",null,rParams,null,null,"Licenses");
+
+	}
+else if (LICENSETYPE == "1st Class Refrig Op") {
+  	
+		
+		var rParams = aa.util.newHashMap();
+			addParameter(rParams,"Record_ID","capId");
+  			addParameter(rParams,"ITEM NAME","LIC LICENSED PROFESSIONAL");
+  			addParameter(rParams,"TASK","Licenses Issuance");
+
+  			logDebug("Parameters: " + rParams);
+    	        
+			runReport4EmailOrPrint(capId,"Boiler",null,rParams,null,null,"Licenses");
+
+	}
+else if (LICENSETYPE == "2nd Class Refrig Op") {
+  	
+		
+			addParameter(rParams,"Record_ID","capId");
+			addParameter(rParams,"ITEM NAME","LIC LICENSED PROFESSIONAL");
+			addParameter(rParams,"TASK","Licenses Issuance");
+
+			logDebug("Parameters: " + rParams);
+
+    	        
+			runReport4EmailOrPrint(capId,"Boiler",null,rParams,null,null,"Licenses");
+
+	}
+else if (LICENSETYPE == "3rd Class Refrig Op") {
+  	
+		
+		var rParams = aa.util.newHashMap();
+			addParameter(rParams,"Record_ID","capId");
+  			addParameter(rParams,"ITEM NAME","LIC LICENSED PROFESSIONAL");
+  			addParameter(rParams,"TASK","Licenses Issuance");
+
+  			logDebug("Parameters: " + rParams);
+    	        
+			runReport4EmailOrPrint(capId,"Boiler",null,rParams,null,null,"Licenses");
+
+	}
+//*********************************** ALL OTHERS *************************************************************
+  	
+else{		var rParams = aa.util.newHashMap();
+	
+		addParameter(rParams,"Record_ID","capId");
+		addParameter(rParams,"TASK","Licenses Issuance");
+		addParameter(rParams,"ITEM NAME","LIC LICENSED PROFESSIONAL");
+		addParameter(rParams,"Logo","Xtra4");
+		logDebug("Parameters: " + rParams);
+
+   	    	        
+  			runReport4EmailOrPrint(capId,"License",null,rParams,null,null,"Licenses");
+  			
 }
+
+}
+	
+
+	
+	}
+

@@ -11,27 +11,13 @@ if (wfStatus == "Request for Corrections") {
         sendExternalReviewNotification();   
 }
 
-if (wfTask == "License Issuance" && wfStatus == "Issued") {
-    newLic = null;
-    newLicId = null;
-    newLicIdString = null;
-    capName = null;
-    newLicenseType = appTypeArray[2];
-    monthsToInitialExpire = 12;
-//    newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
-    // create the permit record;
-//    if (newLicId) {
-//        newLicIdString = newLicId.getCustomID();
-//        updateAppStatus("Issued","Originally Issued",newLicId);
-        
-    }
 
 
 if (wfTask == "License Issuance" && wfStatus == "Issued") {
 //->branch("LIC Establish Links to Reference Contacts");
     logDebug("Executing LIC Establish Links to Reference Contacts");
     iArr = new Array();  //attributes to ignore;
-    contactTypeArray = new Array("Applicant","Business Owner","Corporate Officer","Director","Manager","Officer","Partner","President","Respondent","Shareholder");
+    contactTypeArray = new Array("Applicant","Business Owner","Contractor of Record","Corporate Officer","Director","Manager","Officer","Partner","President","Respondent","Shareholder");
     if (!feeEstimate) {
         createRefContactsFromCapContactsAndLink(capId,contactTypeArray,iArr,false,false,comparePeopleGeneric);
     }
@@ -42,12 +28,17 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     newLic = null;
     newLicId = null;
     newLicIdString = null;
-//    newLicenseType = "Electrical";
-//    newLicSubType = "Aprentice";  //added by IS 02/22/2017
-    //newLicenseType = "Business";    no such type in module by IS
-//    monthsToInitialExpire = 12;
-    newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
-    // create the license record;
+    parentId = getParent();
+    
+    if (parentId=null) {
+    
+ // create the license record;
+    
+     newLicId = createParent(appTypeArray[0], appTypeArray[1], appTypeArray[2], "License",null);
+    }
+     
+    newLicId = parentId;
+    
     if (newLicId) {
         
     	newLicIdString = newLicId.getCustomID();
@@ -127,7 +118,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
             }
     }  
 //-----------------------------------------------
-    if (appTypeArray[1] == "Boiler" && appTypeArray[2] == "Contractor Registration") {
+    if (appTypeArray[1] == "Boiler" && appTypeArray[2] == "ContractorRegistration") {
 
         thisYear = parseInt(tmpNewDate.getYear().toString())+1900;
 //            thisMonth = tmpNewDate.getMonth();
@@ -243,7 +234,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
     
     
     //->branch("EMSE:LicProfLookup");
-        logDebug("Using LICENSESTATE = " + LICENSESTATE + " from EMSE:GlobalFlags");
+        var LICENSESTATE = " MI";
         //Issue State;
         LICENSETYPE = "";
         //License Type to be populated;
@@ -308,7 +299,7 @@ if (wfTask == "License Issuance" && wfStatus == "Issued") {
                 }
             stateLicense = licCapId.getCustomID();
            // stateLicense = getAppSpecific("State License Number",licCapId);
-           aa.print("LIC State License Number is " + stateLicense);
+           aa.print("Detroit License Number is " + stateLicense);
             }
     
         licObj = licenseProfObject(newLicId,LICENSETYPE);
